@@ -9,8 +9,6 @@ else
     echo "Oh My Zsh já está instalado."
 fi
 
-# Criar links simbólicos para o .zshrc e outros arquivos necessários
-ln -sf ~/dotfiles/zsh/.zshrc ~/.zshrc
 
 # Instalar plugins do Zsh
 if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then

@@ -1,0 +1,23 @@
+[user]
+	name = Antonio Morelli
+    username = victor00
+	email = 4491145+victor00@users.noreply.github.com
+[init]
+	defaultBranch = main
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    ui = true
+[alias]
+	parent = rev-parse --abbrev-ref --symbolic-full-name @{u}
+	last = log -1 HEAD
+	unstage = reset HEAD --
+    pr = !bash ~/dotfiles/git/pull_request.sh
+	remotes = remote -v
+	syncu = !sh ~/.dotfiles/git/sync_with_upstream.sh
+	diffall = !sh ~/.dotfiles/git/git_unpushed.sh
+	plog = !sh ~/.dotfiles/git/plog.sh
+	lazy = !lazygit
+	contributors = shortlog --summary --numbered
+

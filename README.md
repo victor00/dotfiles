@@ -8,12 +8,12 @@
 │   └── .gitconfig
 ├── zsh/
 │   └── .zshrc
+│   └── .aliases
+│   └── .extra_configs
 ├── tmux/
 │   └── .tmux.conf
 ├── vim/
 │   └── init.vim
-└── i3/
-    └── config
 ```
 
 
