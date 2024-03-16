@@ -12,7 +12,8 @@ nvim --version
 
 # 📂 File Structure
 
-# Dotfiles
+## Dotfiles
+
 ```bash
 .dotfiles/
 ├── bin/.local/scripts/
@@ -28,7 +29,8 @@ nvim --version
 │   └── init.vim
 ```
 
-# LazyVim
+## LazyVim
+
 ```bash
 ~/.config/nvim
 ├── lua
@@ -46,8 +48,14 @@ nvim --version
 
 [LazyVim] https://github.com/LazyVim/LazyVim
 
+## After installing Lazyvim
 
-# 🔥 Scripts to run the fast setup
+```bash
+ln -s ~/dotfiles/lazyvim ~/.config/nvim
+```
+
+## 🔥 Scripts to run the fast setup
+
 ```bash
 chmod +x ~/dotfiles/bin/.local/scripts/main.sh
 
