@@ -15,7 +15,5 @@
 	unstage = reset HEAD --
     pr = !bash ~/dotfiles/git/pull_request.sh
 	remotes = remote -v
-	diffall = !bash ~/dotfiles/git/git_unpushed.sh
 	plog = !bash ~/dotfiles/git/plog.sh
 	contributors = shortlog --summary --numbered
-
