@@ -9,5 +9,8 @@ bash "$BINDIR/install_oh_my_zsh.sh"
 # Instalar Lazy Docker
 bash "$BINDIR/install_lazy_docker.sh"
 
-echo "My setup is finished and ready to GO"
-echo "Configuração concluída. Por favor, reinicie o terminal."
+# Instalar Zoxide
+bash "$BINDIR/install_zoxide.sh"
+
+echo -e "\033[1;32mMy setup is finished and ready to GO\033[0m"
+echo -e "\033[1;32mConfiguração concluída. Por favor, reinicie o terminal.\033[0m"
