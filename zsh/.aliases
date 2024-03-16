@@ -8,3 +8,9 @@ alias zshconfig="code ~/.zshrc"
 
 # LAZY DOCKER
 alias lzd='lazydocker'
+
+# Reload zshrc
+alias reload!=". ~/.zshrc"
+
+# Clear
+alias cls="clear"
