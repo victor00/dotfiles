@@ -3,8 +3,7 @@
 
 ```bash
 .dotfiles/
-├── aliases/
-├── scripts/
+├── bin/.local/scripts/
 ├── git/
 │   └── .gitconfig
 ├── zsh/
