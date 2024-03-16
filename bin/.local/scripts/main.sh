@@ -25,7 +25,7 @@ bash "$BINDIR/install_tldr.sh"
 bash "$BINDIR/install_scc.sh"
 
 # Instalar scc
-bash "$BINDIR/install_lazy_vim.sh"
+bash "$BINDIR/install_lazy_vim_dependencies.sh"
 
 
 echo -e "\033[1;32mMy setup is finished and ready to GO\033[0m"
