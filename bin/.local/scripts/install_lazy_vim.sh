@@ -38,11 +38,3 @@ if ! fc-list | grep -i "FiraCode" &> /dev/null; then
 else
     echo "Fonte Fira Code já está instalada."
 fi
-
-# Instalar LazyVim se não estiver instalado
-if [ ! -d "${HOME}/.config/nvim" ]; then
-    echo "LazyVim não encontrado. Instalando..."
-    bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/master/utils/installer/install.sh)
-else
-    echo "LazyVim já está instalado."
-fi

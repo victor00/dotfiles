@@ -1,3 +1,15 @@
+# Installing NVIM on Ubuntu 
+
+```bash
+wget https://github.com/neovim/neovim/releases/download/v0.9.0/nvim-linux64.tar.gz
+
+tar xzvf nvim-linux64.tar.gz
+
+sudo cp -r nvim-linux64/* /usr/local/
+
+nvim --version
+```
+
 # 📂 File Structure
 
 # Dotfiles
