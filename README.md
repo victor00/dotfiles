@@ -51,7 +51,7 @@ nvim --version
 ## After installing Lazyvim
 
 ```bash
-ln -s ~/dotfiles/lazyvim ~/.config/nvim
+ln -s ~/dotfiles/nvim ~/.config/nvim
 ```
 
 ## 🔥 Scripts to run the fast setup

@@ -14,3 +14,7 @@ alias reload!=". ~/.zshrc"
 
 # Clear
 alias cls="clear"
+
+
+# FD
+alias fd="fdfind"
