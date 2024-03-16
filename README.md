@@ -1,6 +1,6 @@
-# dotfiles
+# 📂 File Structure
 
-
+# Dotfiles
 ```bash
 .dotfiles/
 ├── bin/.local/scripts/
@@ -16,9 +16,26 @@
 │   └── init.vim
 ```
 
+# LazyVim
+```bash
+~/.config/nvim
+├── lua
+│   ├── config
+│   │   ├── autocmds.lua
+│   │   ├── keymaps.lua
+│   │   ├── lazy.lua
+│   │   └── options.lua
+│   └── plugins
+│       ├── spec1.lua
+│       ├── **
+│       └── spec2.lua
+└── init.lua
+```
 
-### Run script to setup the machine
+[LazyVim] https://github.com/LazyVim/LazyVim
 
+
+# 🔥 Scripts to run the fast setup
 ```bash
 chmod +x ~/dotfiles/bin/.local/scripts/main.sh
 

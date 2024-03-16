@@ -24,6 +24,9 @@ bash "$BINDIR/install_tldr.sh"
 # Instalar scc
 bash "$BINDIR/install_scc.sh"
 
+# Instalar scc
+bash "$BINDIR/install_lazy_vim.sh"
+
 
 echo -e "\033[1;32mMy setup is finished and ready to GO\033[0m"
 echo -e "\033[1;32mConfiguração concluída. Por favor, reinicie o terminal.\033[0m"
