@@ -1,7 +1,7 @@
 # dotfiles
 
 
-
+```bash
 .dotfiles/
 ├── aliases/
 ├── scripts/
@@ -15,3 +15,4 @@
 │   └── init.vim
 └── i3/
     └── config
+```
