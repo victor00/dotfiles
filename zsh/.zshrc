@@ -102,4 +102,6 @@ export LANG=en_US.UTF-8
 #
 # Example aliases
 
+export PATH="$HOME/.rbenv/bin:$PATH"
+
 

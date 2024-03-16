@@ -1,6 +1,9 @@
 #!/bin/bash
 
+
+
 # ZSH
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias zshconfig="code ~/.zshrc"
 
 # LAZY DOCKER

@@ -20,5 +20,7 @@
 ### Run script to setup the machine
 
 ```bash
-~/dotfiles/bin/main.sh
+chmod +x ~/dotfiles/bin/.local/scripts/main.sh
+
+~/dotfiles/bin/.local/scripts/main.sh
 ```
