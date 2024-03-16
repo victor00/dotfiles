@@ -15,3 +15,10 @@
 └── i3/
     └── config
 ```
+
+
+### Run script to setup the machine
+
+```bash
+~/dotfiles/bin/main.sh
+```

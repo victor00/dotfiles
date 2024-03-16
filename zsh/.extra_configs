@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Precisa rodar antes do zoxide
+autoload -Uz compinit && compinit
+
+# Inicialização do zoxide
+eval "$(zoxide init zsh)"
+
+eval "$(rbenv init - zsh)"
+
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+export PATH="$HOME/.rbenv/bin:$PATH"
