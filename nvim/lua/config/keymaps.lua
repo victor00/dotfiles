@@ -39,6 +39,15 @@ keymap.set("n", "<C-w><right>", "<C-w>>")
 keymap.set("n", "<C-w><up>", "<C-w>+")
 keymap.set("n", "<C-w><down>", "<C-w>-")
 
+-- File explorer with NvimTree
+keymap.set("n", "<Leader>f", ":NvimTreeFindFile<Return>", opts)
+keymap.set("n", "<Leader>t", ":NvimTreeToggle<Return>", opts)
+
+-- Save file and quit
+keymap.set("n", "<Leader>w", ":update<Return>", opts)
+keymap.set("n", "<Leader>q", ":quit<Return>", opts)
+keymap.set("n", "<Leader>Q", ":qa<Return>", opts)
+
 -- Diagnostics
 keymap.set("n", "<C-j>", function()
   vim.diagnostic.goto_next()

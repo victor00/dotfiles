@@ -61,3 +61,24 @@ chmod +x ~/dotfiles/bin/.local/scripts/main.sh
 
 ~/dotfiles/bin/.local/scripts/main.sh
 ```
+
+## Installing Nerd Font
+
+```bash
+cd ~/dotfiles/fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
+
+unzip FiraCode.zip
+rm FiraCode.zip 
+
+# Create symlink
+mkdir -p ~/.local/share/fonts/NerdFonts
+ln -s ~/dotfiles/fonts/*.ttf ~/.local/share/fonts/NerdFonts
+ln -s ~/dotfiles/fonts/*.otf ~/.local/share/fonts/NerdFonts
+
+# Update font cache
+fc-cache -fv
+
+# Check installation
+fc-list | grep "FiraCode"
+```
