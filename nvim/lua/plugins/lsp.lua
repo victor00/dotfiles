@@ -12,7 +12,6 @@ return {
         "tailwindcss-language-server",
         "typescript-language-server",
         "css-lsp",
-        "ruby",
         "solargraph",
         "rubocop",
       })
