@@ -48,6 +48,13 @@ keymap.set("n", "<Leader>w", ":update<Return>", opts)
 keymap.set("n", "<Leader>q", ":quit<Return>", opts)
 keymap.set("n", "<Leader>Q", ":qa<Return>", opts)
 
+-- Vim-Tmux-Navigator
+keymap.set("n", "<C-h>", ":TmuxNavigateLeft<cr>", opts)
+keymap.set("n", "<C-j>", ":TmuxNavigateDown<cr>", opts)
+keymap.set("n", "<C-k>", ":TmuxNavigateUp<cr>", opts)
+keymap.set("n", "<C-l>", ":TmuxNavigateRight<cr>", opts)
+keymap.set("n", "<C-\\>", ":TmuxNavigatePrevious<cr>", opts)
+
 -- Diagnostics
 keymap.set("n", "<C-j>", function()
   vim.diagnostic.goto_next()
