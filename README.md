@@ -50,9 +50,6 @@ nvim --version
 
 ## After installing Lazyvim
 
-```bash
-ln -s ~/dotfiles/nvim ~/.config/nvim
-```
 
 ## 🔥 Scripts to run the fast setup
 
@@ -72,10 +69,13 @@ unzip FiraCode.zip
 rm FiraCode.zip 
 
 # Create symlink
+```bash
+ln -s ~/dotfiles/nvim ~/.config/nvim
 mkdir -p ~/.local/share/fonts/NerdFonts
 ln -s ~/dotfiles/fonts/*.ttf ~/.local/share/fonts/NerdFonts
 ln -s ~/dotfiles/fonts/*.otf ~/.local/share/fonts/NerdFonts
-
+ln -s ~/dotfiles/tmux/.tmux.conf ~/.tmux.conf
+```
 # Update font cache
 fc-cache -fv
 

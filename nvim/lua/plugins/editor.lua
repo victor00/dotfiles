@@ -6,14 +6,19 @@ return {
     opts = {},
   },
   {
-    "telescope.nvim",
+    "nvim-telescope/telescope.nvim",
     priority = 1000,
     dependencies = {
       {
+        "andrew-george/telescope-themes",
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
       },
       "nvim-telescope/telescope-file-browser.nvim",
+      config = function()
+        local telescope = require("telescope")
+        telescope.load_extension("themes")
+      end,
     },
     keys = {
       {
