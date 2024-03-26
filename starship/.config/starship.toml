@@ -34,3 +34,6 @@ renamed = "📛 ×${count}"
 deleted = "🗑️  ×${count}"
 style = "bright-white"
 format = "$all_status$ahead_behind"
+
+[package]
+disabled = true
