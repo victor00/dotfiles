@@ -15,7 +15,7 @@ return {
       { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
-  },
+  },mkdir -p ~/.config && touch ~/.config/starship.toml
   -- Create annotations with one keybind, and jump your cursor in the inserted annotation
   {
     "danymat/neogen",

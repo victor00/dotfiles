@@ -75,6 +75,7 @@ mkdir -p ~/.local/share/fonts/NerdFonts
 ln -s ~/dotfiles/fonts/*.ttf ~/.local/share/fonts/NerdFonts
 ln -s ~/dotfiles/fonts/*.otf ~/.local/share/fonts/NerdFonts
 ln -s ~/dotfiles/tmux/.tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/starship/.config/starship.toml ~/.config/starship.toml
 ```
 # Update font cache
 fc-cache -fv
