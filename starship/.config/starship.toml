@@ -2,19 +2,23 @@
 style_user = "green bold"
 style_root = "red bold"
 format = "[$user]($style)"
-show_always = true
-
+show_always = false
 
 [hostname]
-format = "[$hostname](bold yellow) "
-trim_at = "."
+format = "<[$hostname]($style)>"
+trim_at = "-"
+style = "bold dimmed white"
+disabled = true
 
 [character]
 success_symbol = "[➜](bold green) "
 error_symbol = "[✗](bold red) "
 
-[package]
-disabled = true
+[directory]
+format = "[$path]($style)[$lock_symbol]($lock_style) "
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
 
 # Setting Icons for git status
 [git_status]
