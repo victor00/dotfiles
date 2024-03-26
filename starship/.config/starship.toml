@@ -37,3 +37,12 @@ format = "$all_status$ahead_behind"
 
 [package]
 disabled = true
+
+[ruby]
+symbol = " "
+
+[java]
+symbol = " "
+
+[lua]
+symbol = " "
