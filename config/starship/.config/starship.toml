@@ -49,15 +49,15 @@ style = "bold blue"
 [git_status]
 format = "([$all_status$ahead_behind]($style) )"
 style = "bold yellow"
-ahead = "enviar:${count} "
-behind = "receber:${count} "
-diverged = "divergiu:enviar-${ahead_count}/receber-${behind_count} "
-modified = "modificados:${count} "
-staged = "preparados:${count} "
-untracked = "novos:${count} "
-deleted = "removidos:${count} "
-renamed = "renomeados:${count} "
-conflicted = "conflitos:${count} "
+ahead = "ahead:${count} "
+behind = "behind:${count} "
+diverged = "diverged:ahead-${ahead_count}/behind-${behind_count} "
+modified = "modified:${count} "
+staged = "staged:${count} "
+untracked = "untracked:${count} "
+deleted = "deleted:${count} "
+renamed = "renamed:${count} "
+conflicted = "conflicts:${count} "
 stashed = "stashes:${count} "
 
 [ruby]
@@ -127,7 +127,7 @@ symbol = " "
 [cmd_duration]
 min_time = 1500
 show_milliseconds = false
-format = "[tempo:$duration]($style) "
+format = "[duration:$duration]($style) "
 style = "bold peach"
 
 [jobs]
@@ -140,7 +140,7 @@ style = "bold yellow"
 disabled = false
 map_symbol = false
 pipestatus = true
-format = "[erro:$status]($style) "
+format = "[error:$status]($style) "
 style = "bold red"
 
 [time]

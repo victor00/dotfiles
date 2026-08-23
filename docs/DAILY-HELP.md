@@ -55,8 +55,8 @@ Finalidade: Ghostty ou Warp renderizam o terminal; Zsh fornece o shell modular, 
   `#FF6B00` destaca o cursor, os acentos e comandos válidos digitados. No Warp, o
   Operator Hacker usa o gradiente vertical do Cyber Wave, de `#002633` a `#000000`;
   Ghostty preserva o fundo preto-azulado `#0B0F14`.
-- Exemplos: `git:main`, `novos:1`, `modificados:1`, `preparados:1` e
-  `ruby:v3.4.4`. `novos` significa arquivos ainda não rastreados pelo Git.
+- Exemplos: `git:main`, `untracked:1`, `modified:1`, `staged:1` e
+  `ruby:v3.4.4`. `untracked` significa arquivos ainda não rastreados pelo Git.
 - Usuário/host aparecem somente em SSH ou como root. Runtimes, Docker, Kubernetes,
   Helm e Terraform são exibidos apenas quando o diretório tem contexto compatível.
 - Atualização: pelo grupo `make install-terminal`, após revisar o plano exibido.

@@ -156,7 +156,7 @@ para inserir o resultado sem executá-lo. `Alt-R` abre diretamente o histórico
 compartilhado do Zsh no `fzf`; esse fallback também funciona no Ghostty, Zellij e
 terminais integrados. `Ctrl-Shift-R` fica reservado para Workflows do Warp.
 
-O prompt usa rótulos legíveis: `git:main`, `novos:1`, `modificados:1` e
+O prompt usa rótulos legíveis em inglês: `git:main`, `untracked:1`, `modified:1` e
 `ruby:v3.4.4`, por exemplo. Diretório, Git e relógio aparecem sempre; runtimes e
 ferramentas de infraestrutura aparecem somente em projetos detectados. Usuário/host aparecem
 somente por SSH ou como root. Comandos acima de 1,5 s mostram a duração, e o símbolo
