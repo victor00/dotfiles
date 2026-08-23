@@ -47,6 +47,9 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    -- The next commit adds Vim queries that its pinned parser cannot parse.
+    -- Keep this hard pin until upstream ships a matched query/parser revision.
+    commit = "f795520371e6563dac17a0d556f41d70ca86a789",
     opts = function(_, opts)
       if vim.g.dotfiles_skip_treesitter then
         opts.ensure_installed = {}
