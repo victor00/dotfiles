@@ -8,6 +8,7 @@ config/zellij/.config/zellij|.config/zellij
 config/lazygit/.config/lazygit|.config/lazygit
 config/starship/.config/starship.toml|.config/starship.toml
 config/ghostty/.config/ghostty|.config/ghostty
+config/warp/.config/warp-terminal/settings.toml|.config/warp-terminal/settings.toml
 config/warp/.local/share/warp-terminal/themes/operator-hacker.yaml|.local/share/warp-terminal/themes/operator-hacker.yaml
 bin/dev-help|.local/bin/dev-help
 bin/dev|.local/bin/dev
