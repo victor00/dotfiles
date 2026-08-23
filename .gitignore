@@ -1,1 +1,17 @@
 /zsh/.work_configs
+
+# Local/private configuration
+config/**/local.*
+!config/**/*.example
+*.private.env.json
+.env
+.env.*
+!.env.example
+
+# Generated/runtime state
+.tmp/
+.cache/
+.nvimlog
+nvim.log
+**/.zcompdump*
+config/nvim/.config/go/telemetry/

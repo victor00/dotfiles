@@ -1,0 +1,13 @@
+layout {
+    tab name="api" focus=true {
+        pane split_direction="vertical" {
+            pane size="60%" name="editor" command="nvim"
+            pane stacked=true {
+                pane name="server" expanded=true
+                pane name="tests"
+                pane name="logs"
+                pane name="http-grpc-bruno"
+            }
+        }
+    }
+}

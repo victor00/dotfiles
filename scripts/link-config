@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+repo_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
+target_home="${DOTFILES_TARGET_HOME:-$HOME}"
+apply=false
+backup=false
+
+usage() {
+  cat <<'EOF'
+Usage: scripts/link-config [--apply] [--backup]
+
+Default: show the planned links without changing files.
+--apply: create links whose targets do not exist.
+--backup: with --apply, move conflicts to ~/.local/state/dotfiles/backups/TIMESTAMP.
+EOF
+}
+
+while (($#)); do
+  case "$1" in
+    --apply) apply=true ;;
+    --backup) backup=true ;;
+    -h|--help) usage; exit 0 ;;
+    *) printf 'Unknown option: %s\n' "$1" >&2; exit 2 ;;
+  esac
+  shift
+done
+
+backup_root="$target_home/.local/state/dotfiles/backups/$(date +%Y%m%d-%H%M%S)"
+had_conflict=false
+
+while IFS='|' read -r relative_source relative_target; do
+  [[ "$relative_source" == \#* || -z "$relative_source" ]] && continue
+  source_path="$repo_root/$relative_source"
+  target_path="$target_home/$relative_target"
+  [[ -e "$source_path" ]] || { printf 'Missing source: %s\n' "$source_path" >&2; exit 1; }
+
+  if [[ -L "$target_path" && "$(readlink -f -- "$target_path")" == "$(readlink -f -- "$source_path")" ]]; then
+    printf 'ok       %s\n' "$target_path"
+    continue
+  fi
+
+  if [[ -e "$target_path" || -L "$target_path" ]]; then
+    if [[ "$apply" == true && "$backup" == true ]]; then
+      backup_path="$backup_root/$relative_target"
+      printf 'backup   %s -> %s\n' "$target_path" "$backup_path"
+      mkdir -p -- "$(dirname -- "$backup_path")"
+      mv -- "$target_path" "$backup_path"
+    else
+      printf 'conflict %s (preserved)\n' "$target_path"
+      had_conflict=true
+      continue
+    fi
+  fi
+
+  printf '%-8s %s -> %s\n' "$([[ "$apply" == true ]] && printf link || printf plan)" "$target_path" "$source_path"
+  if [[ "$apply" == true ]]; then
+    mkdir -p -- "$(dirname -- "$target_path")"
+    ln -s -- "$source_path" "$target_path"
+  fi
+done < "$repo_root/config/links.manifest"
+
+if [[ "$had_conflict" == true ]]; then
+  printf '\nConflicts were preserved. Re-run with --apply --backup only after validation.\n' >&2
+  exit 3
+fi

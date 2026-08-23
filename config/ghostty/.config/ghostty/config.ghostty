@@ -1,0 +1,11 @@
+# Ghostty renders the terminal. Zellij owns tabs, panes and sessions.
+# Recovery shell: ghostty -e zsh -l
+command = zellij attach --create work
+shell-integration = zsh
+clipboard-paste-protection = true
+clipboard-read = ask
+clipboard-write = allow
+copy-on-select = false
+cursor-style = block
+cursor-style-blink = false
+window-theme = auto

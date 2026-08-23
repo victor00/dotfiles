@@ -1,0 +1,15 @@
+layout {
+    tab name="code" focus=true {
+        pane split_direction="vertical" {
+            pane size="68%" name="editor" command="nvim"
+            pane stacked=true {
+                pane name="shell" expanded=true
+                pane name="tests"
+                pane name="logs"
+            }
+        }
+        floating_panes {
+            pane name="git" command="lazygit" { x "8%"; y "8%"; width "84%"; height "84%"; }
+        }
+    }
+}

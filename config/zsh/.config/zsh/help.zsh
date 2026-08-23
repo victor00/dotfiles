@@ -1,0 +1,8 @@
+alias help-aliases='dev-help aliases'
+alias help-tools='dev-help tools'
+alias help-zellij='dev-help zellij'
+alias help-nvim='dev-help lazyvim'
+alias help-git='dev-help git'
+alias help-k8s='dev-help kubernetes'
+alias help-rails='dev-help rails'
+alias help-api='dev-help api'

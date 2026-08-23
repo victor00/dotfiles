@@ -1,85 +1,67 @@
-# Installing NVIM on Ubuntu 
+# Dotfiles para Ubuntu
+
+Ambiente modular e reproduzível para desenvolvimento no Ubuntu. Warp ou Ghostty
+renderizam o terminal; Zellij é o único multiplexador; Zsh é o shell; Starship é o
+prompt; LazyVim, VS Code e Cursor são os editores; LazyGit concentra o fluxo Git.
+
+## Início rápido
 
 ```bash
-wget https://github.com/neovim/neovim/releases/download/v0.9.0/nvim-linux64.tar.gz
-
-tar xzvf nvim-linux64.tar.gz
-
-sudo cp -r nvim-linux64/* /usr/local/
-
-nvim --version
+make doctor                    # diagnóstico sem alterações
+./install.sh terminal          # plano de instalação
+./install.sh --apply terminal  # aplica após confirmação
+scripts/link-config            # mostra links e conflitos
+scripts/link-config --apply    # cria somente links ausentes
+make check                     # valida o repositório
 ```
 
-# 📂 File Structure
+Instalação e links são operações separadas e usam dry-run por padrão. Operações APT
+pedem confirmação antes de `sudo`; destinos existentes nunca são sobrescritos sem a
+opção explícita de backup. Veja [instalação](docs/INSTALL.md) e
+[migração](docs/MIGRATION.md).
 
-## Dotfiles
+## Arquitetura
+
+```text
+Warp ou Ghostty
+└── Zellij
+    ├── Zsh + Starship
+    ├── LazyVim / VS Code / Cursor
+    ├── LazyGit
+    ├── Rails console
+    ├── logs
+    └── testes
+```
+
+Zellij é o único multiplexador; não existe fallback para Tmux. As regras contra
+inicialização recursiva estão em [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
+## Estrutura
+
+```text
+bootstrap/   instaladores modulares e idempotentes
+config/      configurações separadas por ferramenta
+bin/         comandos para ~/.local/bin
+scripts/     diagnóstico, links e validação
+docs/        instalação, arquitetura, atalhos e ajuda diária
+Makefile     interface curta para tarefas recorrentes
+install.sh   entrada única dos grupos de instalação
+```
+
+## Ajuda para uso diário
 
 ```bash
-.dotfiles/
-├── bin/.local/scripts/
-├── git/
-│   └── .gitconfig
-├── zsh/
-│   └── .zshrc
-│   └── .aliases
-│   └── .extra_configs
-├── tmux/
-│   └── .tmux.conf
-├── vim/
-│   └── init.vim
+dev-help
+dev-help --interactive
+dev-help rails
+dev-help kubernetes
+dev-help api
 ```
 
-## LazyVim
+Consulte [docs/DAILY-HELP.md](docs/DAILY-HELP.md) para o manual completo.
 
-```bash
-~/.config/nvim
-├── lua
-│   ├── config
-│   │   ├── autocmds.lua
-│   │   ├── keymaps.lua
-│   │   ├── lazy.lua
-│   │   └── options.lua
-│   └── plugins
-│       ├── spec1.lua
-│       ├── **
-│       └── spec2.lua
-└── init.lua
-```
+## Segurança
 
-[LazyVim] https://github.com/LazyVim/LazyVim
-
-## After installing Lazyvim
-
-
-## 🔥 Scripts to run the fast setup
-
-```bash
-chmod +x ~/dotfiles/bin/.local/scripts/main.sh
-
-~/dotfiles/bin/.local/scripts/main.sh
-```
-
-## Installing Nerd Font
-
-```bash
-cd ~/dotfiles/fonts
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
-
-unzip FiraCode.zip
-rm FiraCode.zip 
-
-# Create symlink
-```bash
-ln -s ~/dotfiles/nvim ~/.config/nvim
-mkdir -p ~/.local/share/fonts/NerdFonts
-ln -s ~/dotfiles/fonts/*.ttf ~/.local/share/fonts/NerdFonts
-ln -s ~/dotfiles/fonts/*.otf ~/.local/share/fonts/NerdFonts
-ln -s ~/dotfiles/tmux/.tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/starship/.config/starship.toml ~/.config/starship.toml
-```
-# Update font cache
-fc-cache -fv
-
-# Check installation
-fc-list | grep "FiraCode"
-```
+Credenciais, tokens, chaves, kubeconfigs, `.env`, telemetria local e ambientes HTTP
+privados não pertencem ao repositório. Dependências e testes específicos permanecem
+em cada projeto. Leia [docs/SECURITY.md](docs/SECURITY.md).

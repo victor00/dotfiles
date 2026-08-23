@@ -1,0 +1,13 @@
+layout {
+    tab name="rails" focus=true {
+        pane split_direction="vertical" {
+            pane size="65%" name="editor" command="nvim"
+            pane stacked=true {
+                pane name="server" expanded=true
+                pane name="console"
+                pane name="tests"
+                pane name="logs"
+            }
+        }
+    }
+}

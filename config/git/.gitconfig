@@ -1,0 +1,24 @@
+[init]
+	defaultBranch = main
+[core]
+	editor = nvim
+	pager = less -FRX
+[color]
+	ui = auto
+[pull]
+	rebase = true
+[push]
+	autoSetupRemote = true
+[fetch]
+	prune = true
+[rerere]
+	enabled = true
+[merge]
+	conflictStyle = zdiff3
+[alias]
+	last = log -1 HEAD
+	unstage = restore --staged --
+	contributors = shortlog --summary --numbered
+	plog = log --graph --decorate --oneline --all
+[include]
+	path = ~/.config/git/local.config

@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+repo_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
+cd "$repo_root"
+
+shell_files=(install.sh bootstrap/*.sh bootstrap/lib/*.sh bin/dev-help scripts/doctor scripts/link-config scripts/check)
+for file_name in "${shell_files[@]}"; do bash -n "$file_name"; done
+
+if command -v shellcheck >/dev/null 2>&1; then
+  shellcheck -x "${shell_files[@]}"
+else
+  printf 'warning: shellcheck not installed; skipped\n' >&2
+fi
+
+if command -v zsh >/dev/null 2>&1; then
+  zsh -n config/zsh/.zshrc config/zsh/.zprofile config/zsh/.config/zsh/*.zsh
+fi
+
+if command -v nvim >/dev/null 2>&1; then
+  while IFS= read -r -d '' lua_file; do
+    nvim --clean --headless -n -u NONE \
+      -c "lua assert(loadfile([[$lua_file]]))" -c qa
+  done < <(find config/nvim/.config/nvim -type f -name '*.lua' -print0)
+fi
+
+if ! git diff --check; then
+  printf 'warning: git diff --check found issues; inspect whether they predate this migration.\n' >&2
+fi
+
+if rg -n '[[:blank:]]+$' AGENTS.md Makefile README.md install.sh bootstrap bin config docs scripts; then
+  printf 'Trailing whitespace found in the new architecture.\n' >&2
+  exit 1
+fi
+printf 'Static checks passed.\n'

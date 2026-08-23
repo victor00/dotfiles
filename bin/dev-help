@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+set -u
+
+resolve_source() {
+  local source_file="${BASH_SOURCE[0]}" source_dir link_target
+  while [[ -L "$source_file" ]]; do
+    source_dir="$(cd -P -- "$(dirname -- "$source_file")" && pwd)"
+    link_target="$(readlink -- "$source_file")"
+    [[ "$link_target" == /* ]] && source_file="$link_target" || source_file="$source_dir/$link_target"
+  done
+  cd -P -- "$(dirname -- "$source_file")/.." && pwd
+}
+
+readonly REPO_ROOT="${DOTFILES_ROOT:-$(resolve_source)}"
+readonly HELP_FILE="$REPO_ROOT/docs/DAILY-HELP.md"
+
+if [[ -t 1 && -z "${NO_COLOR:-}" && "${TERM:-}" != dumb ]]; then
+  readonly BOLD=$'\033[1m' BLUE=$'\033[34m' YELLOW=$'\033[33m' RESET=$'\033[0m'
+else
+  readonly BOLD='' BLUE='' YELLOW='' RESET=''
+fi
+
+die() { printf '%serror:%s %s\n' "$YELLOW" "$RESET" "$*" >&2; exit 2; }
+
+topics() {
+  sed -n 's/^<!-- dev-help:\([^ ]*\).* -->$/\1/p' "$HELP_FILE"
+}
+
+canonical_topic() {
+  case "$1" in
+    ruby|rspec) printf 'rails\n' ;;
+    k8s|kubectl|helm) printf 'kubernetes\n' ;;
+    nvim|neovim) printf 'lazyvim\n' ;;
+    grpcurl) printf 'grpc\n' ;;
+    zsh|fzf|zoxide|starship) printf 'shell\n' ;;
+    docker-compose|compose) printf 'docker\n' ;;
+    *) printf '%s\n' "$1" ;;
+  esac
+}
+
+show_topic() {
+  local requested="$1" topic found=false
+  topic="$(canonical_topic "$requested")"
+  if topics | grep -Fxq -- "$topic"; then found=true; fi
+  if [[ "$found" != true ]]; then
+    printf 'Unknown topic: %s\n' "$requested" >&2
+    printf 'Similar topics: '
+    topics | awk -v q="$requested" 'index($0,q) || index(q,$0) || substr($0,1,1)==substr(q,1,1)' | paste -sd ' ' -
+    exit 2
+  fi
+  awk -v topic="$topic" '
+    $0 ~ "^<!-- dev-help:" topic "([[:space:]]| -->)" { printing=1; next }
+    printing && /^<!-- \/dev-help -->$/ { exit }
+    printing { print }
+  ' "$HELP_FILE"
+  printf '\n%sDocumentation:%s %s#%s\n' "$BLUE" "$RESET" "$HELP_FILE" "$topic"
+}
+
+usage() {
+  cat <<'EOF'
+Usage: dev-help [TOPIC]
+       dev-help --list
+       dev-help --search TERM
+       dev-help --interactive
+       dev-help --help
+
+Without arguments, prints available categories. --interactive uses fzf when installed.
+EOF
+}
+
+[[ -r "$HELP_FILE" ]] || die "documentation not found: $HELP_FILE"
+
+case "${1:-}" in
+  "") printf '%sDaily development help%s\n\n' "$BOLD" "$RESET"; topics | column 2>/dev/null || topics ;;
+  -h|--help) usage ;;
+  --list) topics ;;
+  --search)
+    [[ -n "${2:-}" ]] || die '--search requires a term'
+    grep -in -C 2 -- "$2" "$HELP_FILE" || { printf 'No matches for: %s\n' "$2"; exit 1; }
+    ;;
+  --interactive)
+    command -v fzf >/dev/null 2>&1 || die 'fzf is not installed; use dev-help --list'
+    selected="$(topics | fzf --prompt='dev-help > ' --height=60% --layout=reverse --border)" || exit 130
+    show_topic "$selected"
+    ;;
+  --*) die "unknown option: $1" ;;
+  *) show_topic "$1" ;;
+esac

@@ -1,0 +1,15 @@
+layout {
+    tab name="kubernetes" focus=true {
+        pane split_direction="vertical" {
+            pane size="55%" name="manifests" command="nvim"
+            pane stacked=true {
+                pane name="kubectl" expanded=true
+                pane name="logs"
+                pane name="helm"
+            }
+        }
+        floating_panes {
+            pane name="k9s-optional" { x "5%"; y "5%"; width "90%"; height "90%"; }
+        }
+    }
+}

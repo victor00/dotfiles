@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -u
+
+repo_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
+status=0
+
+printf 'Dotfiles doctor\nRepository: %s\n\n' "$repo_root"
+printf '%-18s %-10s %s\n' TOOL STATUS VERSION
+for tool_name in zsh git gh lazygit nvim zellij fzf zoxide rg fd fdfind bat batcat eza jq yq direnv mise starship docker kubectl k9s helm stern grpcurl bru http psql redis-cli terraform gcloud temporal shellcheck shfmt actionlint yamllint hadolint tree-sitter claude codex cursor; do
+  if command -v "$tool_name" >/dev/null 2>&1; then
+    tool_location="$(command -v "$tool_name")"
+    printf '%-18s %-10s %s\n' "$tool_name" installed "$tool_location"
+  else
+    printf '%-18s %-10s %s\n' "$tool_name" optional '-'
+  fi
+done
+
+printf '\nManaged targets\n'
+while IFS='|' read -r relative_source relative_target; do
+  [[ "$relative_source" == \#* || -z "$relative_source" ]] && continue
+  source_path="$repo_root/$relative_source"
+  target_path="${DOTFILES_TARGET_HOME:-$HOME}/$relative_target"
+  if [[ -L "$target_path" && "$(readlink -f -- "$target_path")" == "$(readlink -f -- "$source_path")" ]]; then
+    state=linked
+  elif [[ -e "$target_path" || -L "$target_path" ]]; then
+    state=conflict
+  else
+    state=missing
+  fi
+  printf '%-10s %s\n' "$state" "$target_path"
+done < "$repo_root/config/links.manifest"
+
+exit "$status"

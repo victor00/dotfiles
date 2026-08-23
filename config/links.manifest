@@ -1,0 +1,11 @@
+# source relative to repository|target relative to HOME
+config/zsh/.zshrc|.zshrc
+config/zsh/.zprofile|.zprofile
+config/zsh/.config/zsh|.config/zsh
+config/git/.gitconfig|.gitconfig
+config/nvim/.config/nvim|.config/nvim
+config/zellij/.config/zellij|.config/zellij
+config/lazygit/.config/lazygit|.config/lazygit
+config/starship/.config/starship.toml|.config/starship.toml
+config/ghostty/.config/ghostty|.config/ghostty
+bin/dev-help|.local/bin/dev-help
