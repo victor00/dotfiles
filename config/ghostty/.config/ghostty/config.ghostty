@@ -8,7 +8,11 @@ shell-integration = zsh
 # ==============================================================================
 
 theme = Atom One Dark
-background-opacity = 0.97
+background-opacity = 0.98
+foreground = #ABB2BF
+cursor-color = #D19A66
+selection-background = #3E4451
+selection-foreground = #FFFFFF
 
 # One Dark action palette: magenta slots intentionally become orange/purple.
 palette = 1=#E06C75
@@ -29,16 +33,24 @@ palette = 14=#56B6C2
 # ==============================================================================
 
 font-family = JetBrainsMono Nerd Font
+font-style = Bold
+font-style-bold = Bold
+font-style-italic = Bold Italic
+font-style-bold-italic = Bold Italic
 font-size = 13
-# Supported by Ghostty where the platform provides font thickening.
+# JetBrains coding ligatures and a dotted zero improve dense code readability.
+font-feature = +calt
+font-feature = +liga
+font-feature = +zero
+# Extra weight without increasing font size or reducing terminal capacity.
 font-thicken = true
 
 # ==============================================================================
 # WINDOW
 # ==============================================================================
 
-window-padding-x = 10
-window-padding-y = 8
+window-padding-x = 8
+window-padding-y = 6
 gtk-titlebar-style = tabs
 mouse-hide-while-typing = true
 

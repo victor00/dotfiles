@@ -37,6 +37,8 @@ Finalidade: Ghostty renderiza o terminal; Zsh fornece o shell modular, e Starshi
 - Ghostty abre `zellij attach --create work`; recuperação: `ghostty -e zsh -l`.
 - Ghostty: `Ctrl-Shift-T` nova aba, `Ctrl-Shift-W` fecha superfície,
   `Ctrl-PageDown/PageUp` navega e `Ctrl-Shift-,` recarrega a configuração.
+- JetBrainsMono Nerd Font usa peso Bold, ligaturas de código e zero diferenciado;
+  cursor de bloco laranja e padding compacto mantêm leitura e densidade.
 - A JetBrainsMono Nerd Font fornece os ícones de arquivos; o prompt usa rótulos
   textuais para não depender de símbolos ambíguos.
 - Ghostty, Starship e o realce do Zsh compartilham uma paleta Operator baseada em
@@ -51,6 +53,8 @@ Finalidade: Ghostty renderiza o terminal; Zsh fornece o shell modular, e Starshi
 - Desabilitar integração: comente o módulo correspondente ou use `local.zsh` fora do Git.
 - Zellij automático é opt-in com `DOTFILES_AUTO_ZELLIJ=1`.
 - O fzf detecta capacidades; versões antigas usam os scripts de integração do Ubuntu.
+- A inicialização interativa esperada nesta máquina é próxima de `0,10 s`; meça com
+  `/usr/bin/time zsh -i -c exit` antes de adicionar integrações globais.
 
 Comandos:
 

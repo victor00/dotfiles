@@ -147,7 +147,7 @@ style = "bold red"
 disabled = false
 time_format = "%H:%M"
 format = "[$time]($style)"
-style = "overlay1"
+style = "bold overlay1"
 
 [character]
 success_symbol = "[❯](bold blue)"
