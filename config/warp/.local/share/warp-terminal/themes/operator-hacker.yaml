@@ -2,7 +2,7 @@ name: Operator Hacker
 accent: "#FF6B00"
 cursor: "#FF6B00"
 background:
-  top: "#002733"
+  top: "#002633"
   bottom: "#000000"
 foreground: "#ABB2BF"
 details: darker
