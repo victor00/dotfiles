@@ -1,8 +1,8 @@
 # Arquitetura do ambiente
 
 ```text
-Ghostty
-└── Zellij
+Warp (panes nativos) ou Ghostty
+└── Zellij (opcional, sessões persistentes)
     ├── Zsh + Starship
     ├── LazyVim, VS Code ou Cursor
     ├── LazyGit
@@ -15,6 +15,8 @@ Ghostty
 
 - **Ghostty** renderiza o terminal, fornece integração com o shell e pode organizar
   superfícies em abas GTK. Cada superfície continua executando o cliente Zellij.
+- **Warp** pode organizar abas e panes nativamente para trabalho local curto. Seu
+  tema é versionado, mas preferências internas, conta, histórico e estado não são.
 - **Zellij** é o único multiplexador. Controla sessões, abas, painéis, layouts e
   restauração quando disponível.
 - **Zsh** é o shell interativo; **Starship** é somente o prompt. Seu tema
@@ -45,6 +47,8 @@ Ghostty
    Starship, do `eza` e das interfaces TUI de forma consistente.
 7. Helpers de Git validam repositório, remote, branch, dependências e autenticação
    antes de delegar ao Git ou GitHub CLI. Operações destrutivas nunca são implícitas.
+8. Os atalhos nativos do Warp não são duplicados no Zsh. Zellij permanece disponível
+   quando persistência, layouts complexos ou reconexão forem necessários.
 
 Ao abrir o Ghostty, `command = zellij attach --create work` cria ou anexa a sessão
 principal em cada superfície. As abas GTK são clientes visuais e não substituem as

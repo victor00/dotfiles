@@ -26,12 +26,15 @@ Este é o manual operacional e a fonte de conteúdo do comando `dev-help`. Ferra
 <!-- dev-help:shell -->
 ## Shell e terminal {#shell}
 
-Finalidade: Ghostty renderiza o terminal; Zsh fornece o shell modular, e Starship somente o prompt. Zellij cuida de sessões, abas e painéis.
+Finalidade: Ghostty ou Warp renderizam o terminal; Zsh fornece o shell modular, e Starship somente o prompt. Zellij cuida das sessões persistentes; Warp pode cuidar de panes simples nativamente.
 
 - O tema `Atom One Dark` é um recurso incluído no Ghostty Snap 1.3.1; nomes de temas
   externos não são presumidos em instalações novas.
 
 - Configuração: `config/ghostty/`, `config/zsh/` e `config/starship/`.
+- Tema do Warp: `config/warp/`; selecione `Operator Hacker` em Appearance. Panes
+  nativos: `Ctrl-Shift-D/E`, foco com `Ctrl-Alt-Setas`, maximizar com
+  `Ctrl-Shift-Enter` e fechar com `Ctrl-Shift-W`.
 - Ghostty usa abas GTK para superfícies; Zellij continua responsável por sessões,
   layouts e panes dentro de cada superfície.
 - Ghostty abre `zellij attach --create work`; recuperação: `ghostty -e zsh -l`.
@@ -68,6 +71,7 @@ nvim .                   # abre o projeto no LazyVim
 neovim .                 # alias legível para nvim
 lazyvim .                # alias legível para nvim
 code .                   # abre o projeto no VS Code
+warp-terminal            # abre o Warp; Ctrl-Shift-P mostra todas as ações
 ```
 
 No terminal integrado do VS Code, use `` Ctrl-` ``. Se necessário, selecione Zsh em

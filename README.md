@@ -30,8 +30,8 @@ opção explícita de backup. Veja [instalação](docs/INSTALL.md) e
 ## Arquitetura
 
 ```text
-Warp ou Ghostty
-└── Zellij
+Warp (panes nativos) ou Ghostty
+└── Zellij (opcional)
     ├── Zsh + Starship
     ├── LazyVim / VS Code / Cursor
     ├── LazyGit
@@ -40,8 +40,10 @@ Warp ou Ghostty
     └── testes
 ```
 
-Zellij é o único multiplexador; não existe fallback para Tmux. As regras contra
-inicialização recursiva estão em [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+Zellij continua sendo o multiplexador para sessões persistentes. Para uma rotina
+mais simples, o Warp pode dividir e navegar painéis nativamente, sem iniciar Zellij.
+As regras contra inicialização recursiva estão em
+[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ## Estrutura
 
@@ -111,6 +113,20 @@ tarefas, testes, GitHub, REST, TypeScript/Tailwind e formatação/lint. No VS Co
 abra o terminal integrado com `` Ctrl-` ``; ele usa
 o Zsh e o Starship, mas não inicia outro Zellij dentro do editor. Se o perfil não for
 Zsh, use `Terminal: Select Default Profile`, escolha `zsh` e abra um terminal novo.
+
+### Warp sem Zellij
+
+Abra o Warp pelo menu ou com `warp-terminal`. Em **Settings > Appearance > Themes**,
+selecione `Operator Hacker`; o arquivo versionado compartilha azul, laranja,
+vermelho, verde e roxo com Ghostty e Starship. Use JetBrainsMono Nerd Font, peso
+Bold, cursor em bloco e mantenha ligaturas desativadas se priorizar latência.
+
+O fluxo enxuto usa os panes nativos: `Ctrl-Shift-D` divide à direita,
+`Ctrl-Shift-E` divide abaixo, `Ctrl-Alt-Setas` muda o foco,
+`Ctrl-Shift-Enter` maximiza/restaura e `Ctrl-Shift-W` fecha o pane ativo.
+`Ctrl-Shift-P` abre a paleta e permite localizar qualquer ação pelo nome. Abra
+`nvim .`, servidor e testes em panes separados; use Zellij somente quando precisar
+de sessões persistentes ou reconexão.
 
 O prompt usa rótulos legíveis: `git:main`, `novos:1`, `modificados:1` e
 `ruby:v3.4.4`, por exemplo. Diretório, Git e relógio aparecem sempre; runtimes e
@@ -265,6 +281,7 @@ Para testar links sem tocar no `$HOME`, use
 | Zsh + Starship | Shell e prompt contextual | `exec zsh` | `dev-help shell` |
 | Zellij | Sessões, abas e panes | `zja projeto` | `dev-help zellij` |
 | Ghostty | Terminal gráfico | `ghostty` | `ghostty +show-config` |
+| Warp | Terminal com panes nativos | `warp-terminal` | `Ctrl-Shift-P` |
 | zoxide | Navegação por frequência/nome | `z orchestrator` | `zoxide --help` |
 | `dev project/find` | Localiza projetos, pastas e arquivos | `dev project api` | `dev --help` |
 | fd | Busca arquivos rapidamente | `fd controller app` | `fd --help` |

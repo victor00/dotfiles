@@ -3,7 +3,7 @@
 | Área | Ferramentas | Instalação/ownership |
 |---|---|---|
 | Shell | Zsh, fzf, zoxide, Starship, Zsh Syntax Highlighting | sistema ou release fixada; prompt contextual e comandos válidos em verde |
-| Terminal | Ghostty, JetBrainsMono Nerd Font | pacote oficial para Ubuntu; renderização, símbolos e superfícies GTK |
+| Terminal | Ghostty, Warp, JetBrainsMono Nerd Font | renderização, símbolos; Warp oferece panes nativos sem exigir multiplexador |
 | Multiplexador | Zellij | release oficial fixada; sessões, abas, painéis e layouts |
 | Aplicativos TUI | LazyGit, eza | release oficial fixada |
 | Fluxo diário | `git pr`, `git root`, `git recent`, `git cleanup-preview`, `dev project` | scripts locais em `bin/`, sem credenciais ou exclusões automáticas |
