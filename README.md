@@ -122,8 +122,9 @@ arquivo versionado em `~/.local/share/warp-terminal/themes/` compartilha azul, l
 vermelho, verde e roxo com Ghostty e Starship. Use JetBrainsMono Nerd Font, peso
 Bold, cursor em bloco e mantenha ligaturas desativadas se priorizar latência.
 No prompt, diretórios usam violeta profundo `#6D5BD0`, a branch Git usa azul escuro
-`#4B8FCC` e o estado Git usa amarelo forte `#FFB000`. O cursor e os acentos usam
-laranja `#FF6B00` sobre o fundo preto-azulado `#0B0F14`.
+`#4B8FCC` e o estado Git usa amarelo forte `#FFB000`. O Operator Hacker no Warp
+adota o gradiente vertical do Cyber Wave, do verde-azulado `#002733` ao preto;
+cursor, acentos e comandos válidos digitados usam o laranja `#FF6B00`.
 
 O fluxo enxuto usa os panes nativos: `Ctrl-Shift-D` divide à direita,
 `Ctrl-Shift-E` divide abaixo, `Ctrl-Alt-Setas` muda o foco,
