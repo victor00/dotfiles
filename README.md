@@ -140,7 +140,7 @@ vermelho, verde e roxo com Ghostty e Starship. Use JetBrainsMono Nerd Font, peso
 Bold, cursor em bloco e mantenha ligaturas desativadas se priorizar latência.
 No prompt, diretórios usam violeta profundo `#6D5BD0`, a branch Git usa azul escuro
 `#4B8FCC` e o estado Git usa amarelo forte `#FFB000`. O Operator Hacker no Warp
-adota o gradiente vertical do Cyber Wave, do verde-azulado `#002733` ao preto;
+adota o gradiente vertical do Cyber Wave, do verde-azulado `#002633` ao preto;
 cursor, acentos e comandos válidos digitados usam o laranja `#FF6B00`.
 
 O fluxo enxuto usa os panes nativos: `Ctrl-Shift-D` divide à direita,
@@ -339,6 +339,7 @@ Para testar links sem tocar no `$HOME`, use
 Use `dev-help --list` para todas as categorias e `dev-help --interactive` para
 selecioná-las com fzf. Use `dev-help shortcuts` (ou `dev-help commands`) para
 consultar aliases e funções agrupados por contexto, incluindo `kuse` e `knuse`.
+Para esses atalhos, `type NOME` explica em inglês o que o comando faz.
 
 ## Segurança
 

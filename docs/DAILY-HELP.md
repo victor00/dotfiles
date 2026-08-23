@@ -53,7 +53,7 @@ Finalidade: Ghostty ou Warp renderizam o terminal; Zsh fornece o shell modular, 
 - No prompt Starship, o diretório usa violeta profundo `#6D5BD0`, a branch Git usa azul
   escuro `#4B8FCC` e o estado Git usa amarelo forte `#FFB000`; o laranja vivo
   `#FF6B00` destaca o cursor, os acentos e comandos válidos digitados. No Warp, o
-  Operator Hacker usa o gradiente vertical do Cyber Wave, de `#002733` a `#000000`;
+  Operator Hacker usa o gradiente vertical do Cyber Wave, de `#002633` a `#000000`;
   Ghostty preserva o fundo preto-azulado `#0B0F14`.
 - Exemplos: `git:main`, `novos:1`, `modificados:1`, `preparados:1` e
   `ruby:v3.4.4`. `novos` significa arquivos ainda não rastreados pelo Git.
@@ -246,10 +246,13 @@ zjl api my-api           # start the api layout in the given session
 To inspect how any shortcut is defined in Zsh:
 
 ```bash
-type kuse                 # show the function definition
+type kuse                 # describe what the shortcut does
 whence -v kgp             # identify an alias, function, or executable
 alias                     # list all loaded aliases
 ```
+
+For documented dotfiles shortcuts, `type NAME` prints a concise English
+description. For other commands and options, it keeps the standard Zsh behavior.
 
 This topic is also available through `dev-help aliases` or `dev-help commands`.
 <!-- /dev-help -->
