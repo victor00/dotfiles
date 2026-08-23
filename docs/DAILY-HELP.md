@@ -30,6 +30,11 @@ Finalidade: Ghostty renderiza o terminal; Zsh fornece o shell modular, e Starshi
 - Ghostty abre `zellij attach --create work`; recuperação: `ghostty -e zsh -l`.
 - Ghostty: `Ctrl-Shift-T` nova aba, `Ctrl-Shift-W` fecha superfície,
   `Ctrl-PageDown/PageUp` navega e `Ctrl-Shift-,` recarrega a configuração.
+- A JetBrainsMono Nerd Font fornece os símbolos do prompt e dos aliases com ícones.
+- Starship usa Catppuccin Mocha: diretório azul, Git roxo, ação/duração em
+  vermelho ou laranja e prompt azul em sucesso ou vermelho em erro.
+- Usuário/host aparecem somente em SSH ou como root. Runtimes, Docker, Kubernetes,
+  Helm e Terraform são exibidos apenas quando o diretório tem contexto compatível.
 - Atualização: pelo grupo `make install-terminal`, após revisar o plano exibido.
 - Desabilitar integração: comente o módulo correspondente ou use `local.zsh` fora do Git.
 - Zellij automático é opt-in com `DOTFILES_AUTO_ZELLIJ=1`.
@@ -43,7 +48,13 @@ z nome                   # navega por frequência com zoxide
 zi                       # seleção interativa de diretório
 Ctrl-R                   # histórico pesquisável pelo fzf
 dev-help --interactive   # ajuda pesquisável
+nvim .                   # abre o projeto no LazyVim
+code .                   # abre o projeto no VS Code
 ```
+
+No terminal integrado do VS Code, use `` Ctrl-` ``. Se necessário, selecione Zsh em
+`Terminal: Select Default Profile`; a proteção do shell impede iniciar outro Zellij
+dentro do editor.
 
 Problemas comuns: rode `zsh -n ~/.zshrc` para sintaxe e `make doctor` para dependências. Configuração privada pertence a `~/.config/zsh/local.zsh`.
 <!-- /dev-help -->

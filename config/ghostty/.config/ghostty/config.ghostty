@@ -14,7 +14,7 @@ background-opacity = 0.97
 # FONT
 # ==============================================================================
 
-font-family = JetBrains Mono
+font-family = JetBrainsMono Nerd Font
 font-size = 13
 # Supported by Ghostty where the platform provides font thickening.
 font-thicken = true

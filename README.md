@@ -4,9 +4,10 @@ Ambiente modular e reproduzível para desenvolvimento no Ubuntu. Warp ou Ghostty
 renderizam o terminal; Zellij é o único multiplexador; Zsh é o shell; Starship é o
 prompt; LazyVim, VS Code e Cursor são os editores; LazyGit concentra o fluxo Git.
 
-O perfil do Ghostty usa o tema One Dark Pro Mix, JetBrains Mono 13, transparência
-leve e abas GTK. Cada nova superfície anexa à sessão principal `work` do Zellij.
-No shell, `ls`, `ll` e `tree` usam `eza` quando ele está disponível.
+O perfil do Ghostty usa o tema One Dark Pro Mix, JetBrainsMono Nerd Font 13,
+transparência leve e abas GTK. Cada nova superfície anexa à sessão principal `work`
+do Zellij. O Starship usa Catppuccin Mocha e mostra contexto técnico apenas quando
+relevante. No shell, `ls`, `ll` e `tree` usam `eza` quando ele está disponível.
 
 ## Início rápido
 
@@ -69,6 +70,33 @@ Recarregue o Ghostty com `Ctrl-Shift-,`. Para conferir os valores efetivos:
 ```bash
 ghostty +show-config | rg 'theme|font-family|font-size|background-opacity'
 ```
+
+## Usando Ghostty, LazyVim e VS Code
+
+Abra o Ghostty pelo menu de aplicativos ou execute `ghostty`. A configuração padrão
+abre/anexa a sessão Zellij `work`; `Ctrl-Shift-T` cria outra aba do Ghostty e os
+atalhos `Ctrl-p` e `Ctrl-t` controlam panes e abas dentro do Zellij. Para uma sessão
+sem Zellij, útil em recuperação, execute `ghostty -e zsh -l`.
+
+No diretório de um projeto, escolha o editor sem mudar de ambiente:
+
+```bash
+cd ~/codigo/meu-projeto
+nvim .                    # LazyVim no terminal atual
+code .                    # VS Code no mesmo projeto
+cursor .                  # Cursor, quando desejado
+```
+
+No LazyVim, `<leader>` é `Espaço`: `<leader><space>` localiza arquivos,
+`<leader>/` pesquisa no projeto, `<leader>gg` abre o LazyGit e `<leader>?` mostra os
+atalhos disponíveis. No VS Code, abra o terminal integrado com `` Ctrl-` ``; ele usa
+o Zsh e o Starship, mas não inicia outro Zellij dentro do editor. Se o perfil não for
+Zsh, use `Terminal: Select Default Profile`, escolha `zsh` e abra um terminal novo.
+
+O prompt exibe diretório, Git e relógio sempre; runtimes e ferramentas de
+infraestrutura aparecem somente em projetos detectados. Usuário/host aparecem
+somente por SSH ou como root. Comandos acima de 1,5 s mostram a duração, e o símbolo
+final fica azul em sucesso ou vermelho em erro.
 
 ## Segurança
 

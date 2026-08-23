@@ -17,7 +17,8 @@ Ghostty
   superfícies em abas GTK. Cada superfície continua executando o cliente Zellij.
 - **Zellij** é o único multiplexador. Controla sessões, abas, painéis, layouts e
   restauração quando disponível.
-- **Zsh** é o shell interativo; **Starship** é somente o prompt.
+- **Zsh** é o shell interativo; **Starship** é somente o prompt. Seu tema
+  Catppuccin Mocha usa detecção local do projeto e não consulta clusters.
 - **LazyVim, VS Code e Cursor** são editores. Nenhum deles assume a função de
   multiplexador.
 - **LazyGit** concentra a interface Git. Git CLI continua disponível para scripts e
@@ -36,6 +37,8 @@ Ghostty
 4. Layouts fornecem terminais genéricos; não executam servidor, teste, migração ou
    comando de cluster automaticamente.
 5. Starship não gerencia runtimes, diretórios, sessões ou aliases.
+6. Ghostty seleciona JetBrainsMono Nerd Font para renderizar os símbolos do
+   Starship, do `eza` e das interfaces TUI de forma consistente.
 
 Ao abrir o Ghostty, `command = zellij attach --create work` cria ou anexa a sessão
 principal em cada superfície. As abas GTK são clientes visuais e não substituem as
