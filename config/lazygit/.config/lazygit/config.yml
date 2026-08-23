@@ -5,9 +5,9 @@ gui:
   showCommandLog: false
   filterMode: fuzzy
 git:
-  paging:
-    colorArg: always
-    pager: less -FRX
+  diffRenderers:
+    - colorArg: always
+      command: less -FRX
   autoFetch: false
   autoRefresh: true
   parseEmoji: true
