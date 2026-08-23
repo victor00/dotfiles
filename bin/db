@@ -37,6 +37,20 @@ ensure_private_dirs() {
   chmod 700 -- "$config_dir" "$data_home/rainfrog"
 }
 
+migrate_starter_config() {
+  [[ -f "$config_file" ]] || return 0
+  local old_profile='postgres-local = { host = "localhost", driver = "postgres", port = 5432, database = "postgres" }'
+  local new_profile='postgres-local = { host = "localhost", driver = "postgres", port = 5432, database = "postgres", username = "postgres" }'
+  grep -Fqx -- "$old_profile" "$config_file" || return 0
+
+  local temporary
+  temporary="$(mktemp "$config_dir/.rainfrog_config.XXXXXX")"
+  awk -v old="$old_profile" -v new="$new_profile" '{ print ($0 == old ? new : $0) }' "$config_file" > "$temporary"
+  chmod 600 -- "$temporary"
+  mv -- "$temporary" "$config_file"
+  printf 'db: updated the local PostgreSQL starter profile (username=postgres)\n' >&2
+}
+
 configure() {
   ensure_private_dirs
   if [[ ! -e "$config_file" ]]; then
@@ -49,7 +63,7 @@ configure() {
       'autopairs_enabled = true' \
       '' \
       '[db]' \
-      'postgres-local = { host = "localhost", driver = "postgres", port = 5432, database = "postgres" }' \
+      'postgres-local = { host = "localhost", driver = "postgres", port = 5432, database = "postgres", username = "postgres" }' \
       '' \
       '# Examples; uncomment and adapt only on this machine:' \
       '# mysql-local = { host = "localhost", driver = "mysql", port = 3306, database = "mysql" }' \
@@ -67,11 +81,13 @@ export RAINFROG_CONFIG="$config_dir"
 export RAINFROG_FAVORITES="${RAINFROG_FAVORITES:-$data_home/rainfrog/favorites}"
 
 case "${1:-}" in
-  "") require_rainfrog; ensure_private_dirs; exec rainfrog ;;
+  "") require_rainfrog; ensure_private_dirs; migrate_starter_config; exec rainfrog ;;
   configure) [[ $# -eq 1 ]] || { usage >&2; exit 2; }; configure ;;
   doctor)
     [[ $# -eq 1 ]] || { usage >&2; exit 2; }
     require_rainfrog
+    ensure_private_dirs
+    migrate_starter_config
     printf 'Rainfrog: %s\n' "$(rainfrog --version | head -n 1)"
     printf 'Config:   %s (%s)\n' "$config_file" "$([[ -r "$config_file" ]] && printf ready || printf missing)"
     printf 'Data:     %s\n' "$data_home/rainfrog"
