@@ -75,7 +75,6 @@ favoritos e exports ficam fora do repositório.
 
 ```bash
 db                       # seleciona conexão e abre o Rainfrog
-db project               # abre o PostgreSQL publicado pelo projeto atual
 db configure             # cria/edita configuração privada
 db doctor                # versões e caminhos, sem mostrar credenciais
 db reenter-password      # solicita novamente a senha da conexão escolhida
@@ -83,10 +82,24 @@ db -- --help             # ajuda nativa do Rainfrog
 dev-help database
 ```
 
-Dentro de `automation-engine`, `automation-orchestrator` ou `rdstation`, use
-`db project`. O comando descobre a porta publicada pelo Docker Compose sem guardar
-senha. Ele não inicia containers: suba o stack local do projeto primeiro. Para o
-Orchestrator, Temporal usa `localhost:7233` e a UI usa `http://localhost:8080`.
+Para cadastrar um banco de projeto, rode `db configure` e adicione uma entrada sem
+senha:
+
+```toml
+[db]
+meu-projeto = { host = "localhost", driver = "postgres", port = 5432, database = "app_development", username = "postgres" }
+```
+
+Quando o Docker Compose publicar uma porta dinâmica, descubra a porta do host e abra
+o Rainfrog sem salvar credenciais:
+
+```bash
+docker compose port SERVICO_POSTGRES 5432
+db -- --driver postgres --username USUARIO --host 127.0.0.1 --port PORTA --database BANCO
+```
+
+Mantenha atalhos específicos de trabalho em `~/.config/zsh/local.zsh`, que fica fora
+do Git. O wrapper não inicia containers nem servidores automaticamente.
 
 Fluxo inicial:
 
