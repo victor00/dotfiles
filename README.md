@@ -64,9 +64,21 @@ dev-help api
 dev-help git
 ```
 
-Consulte [docs/DAILY-HELP.md](docs/DAILY-HELP.md) para o manual completo.
+Consulte [docs/DAILY-HELP.md](docs/DAILY-HELP.md) para o manual completo ou abra o
+[cheatsheet dos 30 comandos essenciais](docs/CHEATSHEET.md).
 
-Recarregue o Ghostty com `Ctrl-Shift-,`. Para conferir os valores efetivos:
+Se `command -v ghostty` não retornar caminho, instale-o primeiro no seu próprio
+terminal (a senha sudo é digitada localmente):
+
+```bash
+./install.sh desktop
+./install.sh --apply desktop
+command -v ghostty || test -x /snap/bin/ghostty
+```
+
+Depois, abra “Ghostty” pelo menu de aplicativos ou execute `ghostty` (use
+`/snap/bin/ghostty` antes de reiniciar a sessão caso o PATH ainda não tenha sido
+atualizado). Recarregue a configuração com `Ctrl-Shift-,`. Para conferir os valores:
 
 ```bash
 ghostty +show-config | rg 'theme|font-family|font-size|background-opacity'
@@ -117,6 +129,156 @@ navega, uma linha verde `✓ /caminho` confirma o destino acessado.
 
 No shell, `gst` mostra o status Git e `..` sobe um diretório. Consulte exemplos e
 cuidados em `dev-help git`.
+
+### Painel de operações no terminal
+
+O comando `dev` oferece equivalentes leves aos widgets de desenvolvimento, usando
+somente ferramentas de terminal e sem substituir GNOME, Ghostty ou Zellij:
+
+```bash
+dev kube                   # contexto Kubernetes local
+dev kube --live            # nós e resumo dos pods
+dev docs git               # manpage ou exemplos tldr
+dev status                 # status oficial de serviços
+dev localhost              # endpoints, portas e processos locais
+dev port 3000              # processo que escuta na porta
+dev open 3000              # abre http://localhost:3000
+```
+
+Use `dev-help kube`, `dev-help docs`, `dev-help status` e `dev-help ports` para
+detalhes e limites de segurança. A saída segue Catppuccin e respeita `NO_COLOR`.
+
+### Bancos no terminal
+
+Rainfrog é o navegador principal e funciona fora de projetos Rails:
+
+```bash
+./install.sh database          # plano sem alterações
+./install.sh --apply database  # instala versão fixada via Cargo, sem sudo
+scripts/link-config --apply    # disponibiliza o comando db
+db configure                   # configuração privada fora do Git
+db                             # seleciona conexão e abre o TUI
+db doctor
+```
+
+PostgreSQL tem prioridade; MySQL e SQLite são suportados pelo mesmo binário, sem
+wrappers adicionais. Veja conexões, navegação, SQL, histórico, favoritos e cuidados
+de produção em `dev-help database`.
+
+## Configuração em um PC novo
+
+O fluxo abaixo importa estes dotfiles sem sobrescrever arquivos existentes e sem
+presumir um caminho fixo para o clone.
+
+1. Instale Git e clone o repositório:
+
+   ```bash
+   sudo apt-get update
+   sudo apt-get install git
+   git clone git@github.com:victor00/dotfiles.git ~/src/dotfiles
+   cd ~/src/dotfiles
+   ```
+
+2. Faça o diagnóstico e revise todos os planos, ainda sem alterações:
+
+   ```bash
+   make doctor
+   ./install.sh core
+   ./install.sh terminal
+   ./install.sh languages
+   ./install.sh development
+   ./install.sh database
+   ./install.sh desktop
+   scripts/link-config
+   ```
+
+3. Aplique somente os grupos desejados. Cada operação APT pede confirmação antes de
+   usar sudo; grupos Cargo/binários escrevem no diretório do usuário:
+
+   ```bash
+   ./install.sh --apply core
+   ./install.sh --apply terminal
+   ./install.sh --apply languages
+   ./install.sh --apply development
+   ./install.sh --apply database
+   ./install.sh --apply desktop
+   ```
+
+4. Revise conflitos antes dos links. Para uma máquina limpa, crie apenas destinos
+   ausentes; em migração, use backup somente depois de conferir o dry-run:
+
+   ```bash
+   scripts/link-config
+   scripts/link-config --apply
+   # scripts/link-config --apply --backup  # somente para conflitos revisados
+   exec zsh
+   ```
+
+5. Mantenha dados específicos da máquina fora do Git:
+
+   ```bash
+   nvim ~/.config/zsh/local.zsh
+   nvim ~/.config/git/local.config
+   db configure
+   ```
+
+   Não copie tokens, kubeconfigs, `.env`, senhas ou URLs de banco com credenciais
+   para o repositório. Autentique `gh`, `gcloud` e outras CLIs pelos fluxos oficiais.
+
+6. Valide o resultado:
+
+   ```bash
+   make doctor
+   make check
+   zsh -n ~/.zshrc
+   nvim --headless '+checkhealth' '+qa'
+   zellij setup --check
+   db doctor
+   command -v ghostty || test -x /snap/bin/ghostty
+   ```
+
+   Se o Ghostty recém-instalado não aparecer no menu ou no `PATH`, encerre e abra a
+   sessão gráfica novamente. Até lá, `/snap/bin/ghostty` inicia o aplicativo.
+
+Para testar links sem tocar no `$HOME`, use
+`DOTFILES_TARGET_HOME=/tmp/dotfiles-home scripts/link-config --apply`. Consulte
+[instalação](docs/INSTALL.md), [migração](docs/MIGRATION.md) e
+[segurança](docs/SECURITY.md) antes de restaurar backups ou resolver conflitos.
+
+## Referência rápida de ferramentas
+
+| Ferramenta/comando | Para que serve | Exemplo | Ajuda |
+|---|---|---|---|
+| `dev-help` | Manual diário pesquisável | `dev-help git` | `dev-help --help` |
+| Zsh + Starship | Shell e prompt contextual | `exec zsh` | `dev-help shell` |
+| Zellij | Sessões, abas e panes | `zja projeto` | `dev-help zellij` |
+| Ghostty | Terminal gráfico | `ghostty` | `ghostty +show-config` |
+| zoxide | Navegação por frequência/nome | `z orchestrator` | `zoxide --help` |
+| `dev project/find` | Localiza projetos, pastas e arquivos | `dev project api` | `dev --help` |
+| fd | Busca arquivos rapidamente | `fd controller app` | `fd --help` |
+| ripgrep (`rg`) | Busca texto em projetos | `rg 'TODO|FIXME'` | `rg --help` |
+| eza | Lista arquivos com Git/ícones | `ll` | `eza --help` |
+| bat | Exibe arquivos com syntax highlight | `bat README.md` | `bat --help` |
+| fzf | Seleção interativa | `Ctrl-R` | `fzf --help` |
+| Git | Controle de versão | `gst` | `dev-help git` |
+| `git pr` | Abre/inspeciona PR da branch | `git pr --checks` | `git pr -h` |
+| LazyGit | Interface Git TUI | `lg` | `lazygit --help` |
+| GitHub CLI | PRs, issues e checks | `gh pr checks` | `gh help` |
+| LazyVim | Editor principal no terminal | `nvim .` | `dev-help lazyvim` |
+| VS Code/Cursor | Editores gráficos | `code .` | `code --help` |
+| Docker Compose | Serviços locais | `docker compose up -d` | `dev-help docker` |
+| kubectl/k9s/Helm | Operação Kubernetes | `dev kube` | `dev-help kubernetes` |
+| Terraform/GCloud | Infraestrutura e cloud | `terraform plan` | `dev-help infrastructure` |
+| `dev status` | Status público de provedores | `dev status github` | `dev-help status` |
+| `dev ports` | Portas e processos locais | `dev port 3000` | `dev-help ports` |
+| curl/HTTPie | Requisições HTTP | `http GET :3000/health` | `dev-help api` |
+| jq/yq | Consulta JSON/YAML | `jq '.items[]' file.json` | `dev-help json` |
+| Rainfrog | Navegador SQL TUI | `db` | `dev-help database` |
+| psql | Cliente PostgreSQL direto | `psql -d postgres` | `psql --help` |
+| ShellCheck/shfmt | Validação de shell | `make check` | `shellcheck --help` |
+
+Use `dev-help --list` para todas as categorias e `dev-help --interactive` para
+selecioná-las com fzf.
 
 ## Segurança
 

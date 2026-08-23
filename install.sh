@@ -14,6 +14,7 @@ Groups:
   terminal      Zsh, fzf, zoxide, Starship, Zellij and LazyGit
   languages     mise runtime manager (runtimes remain project-controlled)
   development   Shared development and lint tools
+  database      Rainfrog database TUI (PostgreSQL priority)
   api-tools     HTTPie, jq and yq
   bruno         Optional Bruno Desktop information/installer
   grpc-tools    grpcurl and optional WebSocket CLI
@@ -33,7 +34,7 @@ fi
 group="${1:-}"
 case "$group" in
   -h|--help|"") usage; exit 0 ;;
-  core|terminal|languages|development|api-tools|bruno|grpc-tools|desktop) ;;
+  core|terminal|languages|development|database|api-tools|bruno|grpc-tools|desktop) ;;
   *) printf 'Unknown group: %s\n' "$group" >&2; usage >&2; exit 2 ;;
 esac
 

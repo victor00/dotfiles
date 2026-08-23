@@ -7,6 +7,8 @@
 | Multiplexador | Zellij | release oficial fixada; sessões, abas, painéis e layouts |
 | Aplicativos TUI | LazyGit, eza | release oficial fixada |
 | Fluxo diário | `git pr`, `git root`, `git recent`, `git cleanup-preview`, `dev project` | scripts locais em `bin/`, sem credenciais ou exclusões automáticas |
+| Painel dev | `dev kube`, `dev docs`, `dev status`, `dev localhost` | leitura local ou endpoints públicos com timeout; abertura de URL somente explícita |
+| Bancos | Rainfrog, psql | Rainfrog 0.4.3 via Cargo, sem DuckDB/Oracle opcionais; dados no XDG privado |
 | Arquivos | ripgrep, fd, bat, jq, yq | sistema quando compatível |
 | Runtime | mise | versões definidas pelo projeto |
 | Ruby | Ruby LSP, RuboCop | projeto/Bundler quando fixado; Mason como fallback |

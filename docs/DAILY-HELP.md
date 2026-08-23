@@ -14,6 +14,10 @@ Este é o manual operacional e a fonte de conteúdo do comando `dev-help`. Ferra
 - [Python](#python)
 - [Java](#java)
 - [APIs](#api)
+- [Documentação local](#docs)
+- [Status de serviços](#status)
+- [Portas locais](#ports)
+- [Bancos de dados](#database)
 - [Containers](#docker)
 - [Kubernetes](#kubernetes)
 - [Infraestrutura](#infrastructure)
@@ -57,6 +61,79 @@ No terminal integrado do VS Code, use `` Ctrl-` ``. Se necessário, selecione Zs
 dentro do editor.
 
 Problemas comuns: rode `zsh -n ~/.zshrc` para sintaxe e `make doctor` para dependências. Configuração privada pertence a `~/.config/zsh/local.zsh`.
+<!-- /dev-help -->
+
+<!-- dev-help:database -->
+## Bancos de dados {#database}
+
+Rainfrog é o navegador TUI independente de framework. PostgreSQL é prioridade;
+MySQL e SQLite usam o suporte nativo do mesmo binário. Conexões, senhas, histórico,
+favoritos e exports ficam fora do repositório.
+
+```bash
+db                       # seleciona conexão e abre o Rainfrog
+db configure             # cria/edita configuração privada
+db doctor                # versões e caminhos, sem mostrar credenciais
+db reenter-password      # solicita novamente a senha da conexão escolhida
+db -- --help             # ajuda nativa do Rainfrog
+dev-help database
+```
+
+Fluxo inicial:
+
+1. Rode `db configure` e ajuste o bloco `postgres-local` sem gravar senha.
+2. Rode `db`; selecione a conexão e informe a senha no prompt/keyring do Rainfrog.
+3. Use `Alt-1` a `Alt-5` para menu, SQL, resultados, histórico e favoritos; `Tab`
+   também alterna o foco.
+4. Navegue schemas/tabelas no menu, filtre pelo nome, abra metadados e escreva SQL
+   no editor. `Ctrl-Space` força autocomplete.
+5. Exporte/copiei resultados somente pela ação explícita no painel de resultados.
+
+Evite contas de produção com permissão de escrita. Prefira usuário read-only e nunca
+coloque senha ou URL com credencial no arquivo versionado, histórico do shell ou
+linha de comando.
+<!-- /dev-help -->
+
+<!-- dev-help:docs -->
+## Documentação local {#docs}
+
+`dev docs` consulta primeiro manuais já instalados e usa tldr como fallback para
+exemplos práticos. A pesquisa não envia código, arquivos ou contexto do projeto.
+
+```bash
+dev docs git             # manual local; tldr quando não houver manpage
+dev docs kubectl
+dev docs --search archive # pesquisa descrições das manpages com apropos
+```
+<!-- /dev-help -->
+
+<!-- dev-help:status -->
+## Status de serviços {#status}
+
+Consulta endpoints públicos oficiais com timeout curto, sem token e sem alterar
+serviços. Uma falha de rede aparece como `unavailable`, não como indisponibilidade
+confirmada do provedor.
+
+```bash
+dev status               # GitHub, Cloudflare, npm, OpenAI e Docker
+dev status github        # somente um serviço
+dev status openai
+```
+<!-- /dev-help -->
+
+<!-- dev-help:ports -->
+## Portas e servidores locais {#ports}
+
+```bash
+dev localhost            # endpoints, portas e processos que estão escutando
+dev ports                # equivalente explícito
+dev port 3000            # detalhes de uma porta
+dev open 3000            # abre http://localhost:3000; ALTERA ESTADO da interface
+```
+
+Processos de outros usuários podem aparecer como `unknown` sem privilégios. A lista
+não presume que toda porta fale HTTP. Nenhum comando encerra processos; `dev open`
+confirma que há um listener e só então abre HTTP quando chamado diretamente.
 <!-- /dev-help -->
 
 <!-- dev-help:aliases -->
@@ -372,6 +449,9 @@ docker compose down                  # ALTERA ESTADO
 Comandos de leitura:
 
 ```bash
+dev kube                         # contexto local, sem consultar o cluster
+dev kube contexts                # contextos configurados
+dev kube --live                  # nós e resumo de pods, com timeout
 kubectl config current-context
 kubectl get pods -A
 kubectl logs -f POD -n NAMESPACE
@@ -380,7 +460,10 @@ kubectl port-forward svc/SERVICE 8080:80 -n NAMESPACE
 helm list -A
 ```
 
-`kuse` e `knuse` pedem confirmação porque alteram contexto local. `apply`, `delete`, `scale`, `rollout`, `patch`, `edit`, `helm install/upgrade/uninstall` **ALTERAM CLUSTER** e nunca são executados pelos dotfiles.
+`dev kube use CONTEXTO`, `kuse` e `knuse` pedem confirmação porque alteram contexto
+local. `apply`, `delete`, `scale`, `rollout`, `patch`, `edit`,
+`helm install/upgrade/uninstall` **ALTERAM CLUSTER** e nunca são executados pelos
+dotfiles.
 
 LazyVim fornece YAML schemas, Helm e validação; CRDs podem precisar de schemas específicos mantidos no projeto.
 <!-- /dev-help -->

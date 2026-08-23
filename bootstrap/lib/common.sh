@@ -30,15 +30,15 @@ plan_only() {
 }
 
 confirm_sudo() {
-  local answer
+  local answer prompt="$1"
   [[ -t 0 ]] || die 'sudo installation requires an interactive terminal.'
-  read -r -p 'Allow sudo apt operations for this group? [y/N] ' answer
+  read -r -p "$prompt [y/N] " answer
   [[ "$answer" =~ ^[Yy]$ ]] || die 'Installation cancelled.'
 }
 
 apt_install() {
   (($# > 0)) || return 0
-  confirm_sudo
+  confirm_sudo 'Allow sudo apt operations for this group?'
   sudo apt-get update
   sudo apt-get install -y -- "$@"
 }

@@ -15,13 +15,17 @@ show_tool jq 'JSON processor' 'Ubuntu' 'distribution supported' 'apt upgrade'
 show_tool rg 'fast text search' 'Ubuntu/upstream binary' 'current stable' 'same install source'
 show_tool fd 'fast file finder' 'Ubuntu/upstream binary' 'current stable' 'same install source'
 show_tool bat 'syntax-aware file viewer' 'Ubuntu/upstream binary' 'current stable' 'same install source'
+show_tool tldr 'practical command documentation' 'Ubuntu' 'distribution supported' 'apt upgrade'
+show_tool ss 'local port inspection' 'Ubuntu iproute2' 'distribution supported' 'apt upgrade'
+show_tool xdg-open 'explicit URL opening' 'Ubuntu xdg-utils' 'distribution supported' 'apt upgrade'
 printf '\n%-14s %s\n  purpose: %s\n  origin:  %s\n  version: %s\n  update:  %s\n' \
   zsh-highlighting "$(have_zsh_syntax_highlighting && printf '[installed]' || printf '[missing]')" \
   'valid-command highlighting while typing' 'Ubuntu or existing Oh My Zsh plugin' \
   'distribution supported' 'apt upgrade or plugin manager'
 plan_only && exit 0
 missing=()
-for spec in 'git:git' 'curl:curl' 'jq:jq' 'rg:ripgrep' 'fdfind:fd-find' 'batcat:bat'; do
+for spec in 'git:git' 'curl:curl' 'jq:jq' 'rg:ripgrep' 'fdfind:fd-find' 'batcat:bat' \
+  'tldr:tldr' 'ss:iproute2' 'xdg-open:xdg-utils' 'man:man-db'; do
   command_name=${spec%%:*}; package_name=${spec#*:}
   have "$command_name" || missing+=("$package_name")
 done

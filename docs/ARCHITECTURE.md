@@ -25,6 +25,8 @@ Ghostty
   operações pontuais.
 - **Comandos em `bin/`** formam uma camada pequena e descobrível. O Git encontra
   `git-*` pelo `PATH`; `dev` localiza projetos e caminhos sem manter índice próprio.
+- **Rainfrog** fornece exploração SQL independente de Rails. Configuração, histórico,
+  favoritos e exports pertencem ao XDG privado da máquina, nunca a `config/`.
 - **Claude, Cursor e Codex** são agentes de desenvolvimento. Autenticação e contexto
   enviado ficam fora dos dotfiles.
 

@@ -29,11 +29,12 @@ topics() {
 canonical_topic() {
   case "$1" in
     ruby|rspec) printf 'rails\n' ;;
-    k8s|kubectl|helm) printf 'kubernetes\n' ;;
+    kube|k8s|kubectl|helm) printf 'kubernetes\n' ;;
     nvim|neovim) printf 'lazyvim\n' ;;
     grpcurl) printf 'grpc\n' ;;
     zsh|fzf|zoxide|starship) printf 'shell\n' ;;
     docker-compose|compose) printf 'docker\n' ;;
+    db|postgres|postgresql|mysql|sqlite|rainfrog) printf 'database\n' ;;
     *) printf '%s\n' "$1" ;;
   esac
 }

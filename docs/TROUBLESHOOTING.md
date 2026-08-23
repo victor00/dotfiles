@@ -9,6 +9,18 @@ zsh -xlic exit 2>/tmp/zsh-startup.log
 
 O Zellij automático só ocorre quando `DOTFILES_AUTO_ZELLIJ=1`.
 
+Se `ghostty` não existir, configuração vinculada não significa aplicativo instalado:
+
+```bash
+./install.sh desktop
+./install.sh --apply desktop  # execute no seu terminal e digite a senha sudo ali
+command -v ghostty || test -x /snap/bin/ghostty
+/snap/bin/ghostty             # caminho temporário até atualizar a sessão/PATH
+```
+
+Depois da instalação Snap, saia e entre novamente na sessão gráfica se o launcher
+“Ghostty” ainda não aparecer no menu do GNOME.
+
 Se `gst`, `..`, `dev` ou `git pr` não forem encontrados após uma atualização:
 
 ```bash
@@ -35,6 +47,33 @@ confirmação respeita `NO_COLOR`.
 Na branch padrão, `git pr` abre o repositório. Nas demais branches, a mensagem “no
 pull request found” indica que não existe PR associado; use `git pr --create` se a
 criação for desejada. Confira autenticação com `gh auth status`.
+
+## Painel `dev`
+
+- `dev status` mostra `unavailable`: confirme DNS/rede; cada requisição expira em até
+  oito segundos e falhas não são apresentadas como outage confirmado.
+- `dev kube --live` falha: confira `dev kube`, VPN e permissões do contexto. A consulta
+  usa `--request-timeout=8s` e nunca aplica recursos.
+- `dev ports` mostra processo `unknown`: o kernel pode ocultar processos de outros
+  usuários; não execute com sudo apenas para preencher essa coluna.
+- `dev docs TERMO` não encontra conteúdo: tente `dev docs --search TERMO` ou instale
+  documentação do pacote correspondente.
+
+## Rainfrog e bancos
+
+```bash
+db doctor
+command -v rainfrog psql
+rainfrog --version
+```
+
+- `db` não mostra conexões: rode `db configure`, ajuste host/database/usuário e não
+  adicione senha ao TOML.
+- Falha de autenticação: use `db reenter-password`; o wrapper não lê nem registra a
+  senha.
+- Símbolos quebrados: confirme JetBrainsMono Nerd Font no Ghostty.
+- Banco inacessível: confirme VPN, DNS, porta com `dev port PORT` e acesso usando uma
+  conta read-only. O wrapper não inicia containers ou servidores automaticamente.
 
 ## fzf
 

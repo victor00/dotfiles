@@ -10,5 +10,5 @@ if have ghostty; then
   exit 0
 fi
 have snap || die 'snap is required on Ubuntu 22.04.'
-confirm_sudo
+confirm_sudo 'Allow sudo snap installation for Ghostty?'
 sudo snap install ghostty --classic

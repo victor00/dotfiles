@@ -32,6 +32,9 @@ APT exige confirmação interativa antes de `sudo`. Instaladores de binários ex
 O Ubuntu 22.04 não oferece Ghostty no APT. O grupo desktop usa o Snap listado pela
 documentação do Ghostty e nunca executa `curl | sh`. Depois de instalado, Ghostty abre
 `zellij attach --create work`. Para recuperação sem Zellij, execute `ghostty -e zsh -l`.
+Abra “Ghostty” pelo menu do GNOME, execute `ghostty` ou, antes de a sessão atualizar
+o PATH, `/snap/bin/ghostty`. Se o launcher não aparecer, encerre e abra a sessão
+gráfica novamente.
 
 ## Links
 
@@ -45,6 +48,25 @@ Além das configurações, o manifesto vincula `dev-help`, `dev` e os executáve
 `git-*` em `~/.local/bin`. O Zsh gerenciado inclui esse diretório no `PATH`; por isso
 `bin/git-pr` é descoberto automaticamente pelo Git como `git pr`. Após criar links
 em um shell já aberto, rode `exec zsh` para recarregar aliases e funções.
+
+O grupo `core` também garante `curl`, `jq`, `tldr`, `man`, `ss` (iproute2) e
+`xdg-open` (xdg-utils), usados pelos subcomandos operacionais de `dev`. A instalação
+continua idempotente e só usa APT depois da confirmação interativa.
+
+O grupo `database` instala Rainfrog 0.4.3 com `cargo install --locked
+--no-default-features` em `~/.local/bin`, sem sudo. PostgreSQL, MySQL e SQLite
+permanecem disponíveis; os drivers opcionais DuckDB/Oracle não são compilados. Rode
+primeiro o plano e depois aplique:
+
+```bash
+./install.sh database
+./install.sh --apply database
+scripts/link-config --apply
+db configure
+```
+
+`db configure` cria `~/.config/rainfrog/rainfrog_config.toml` com modo `0600`. Esse
+arquivo e `~/.local/share/rainfrog/` são privados da máquina e não são links do Git.
 
 Nunca use `--backup` sem revisar cada conflito mostrado no dry-run. O destino pode ser alterado para testes:
 

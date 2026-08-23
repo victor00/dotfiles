@@ -6,7 +6,7 @@ status=0
 
 printf 'Dotfiles doctor\nRepository: %s\n\n' "$repo_root"
 printf '%-18s %-10s %s\n' TOOL STATUS VERSION
-for tool_name in zsh git gh lazygit nvim zellij fzf zoxide rg fd fdfind bat batcat eza jq yq direnv mise starship docker kubectl k9s helm stern grpcurl bru http psql redis-cli terraform gcloud temporal shellcheck shfmt actionlint yamllint hadolint tree-sitter claude codex cursor; do
+for tool_name in zsh git gh lazygit nvim zellij fzf zoxide rg fd fdfind bat batcat eza jq yq curl tldr man ss xdg-open direnv mise starship docker kubectl k9s helm stern grpcurl bru http psql rainfrog redis-cli terraform gcloud temporal shellcheck shfmt actionlint yamllint hadolint tree-sitter claude codex cursor; do
   if command -v "$tool_name" >/dev/null 2>&1; then
     tool_location="$(command -v "$tool_name")"
     printf '%-18s %-10s %s\n' "$tool_name" installed "$tool_location"

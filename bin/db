@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+config_home="${XDG_CONFIG_HOME:-$HOME/.config}"
+data_home="${XDG_DATA_HOME:-$HOME/.local/share}"
+config_dir="${RAINFROG_CONFIG:-$config_home/rainfrog}"
+config_file="$config_dir/rainfrog_config.toml"
+
+usage() {
+  cat <<EOF
+Usage: db
+       db configure
+       db doctor
+       db reenter-password
+       db -- [RAINFROG OPTIONS]
+       db --help
+
+Open Rainfrog from any directory. Connections, history and favorites remain outside
+the dotfiles:
+  config: $config_file
+  data:   $data_home/rainfrog
+
+configure creates a private starter config when missing and opens it in EDITOR.
+Use "db -- --help" for Rainfrog's native options.
+EOF
+}
+
+die() { printf 'db: %s\n' "$*" >&2; exit 1; }
+require_rainfrog() {
+  command -v rainfrog >/dev/null 2>&1 ||
+    die 'rainfrog is not installed; run: ./install.sh --apply database'
+}
+
+ensure_private_dirs() {
+  umask 077
+  mkdir -p -- "$config_dir" "$data_home/rainfrog"
+  chmod 700 -- "$config_dir" "$data_home/rainfrog"
+}
+
+configure() {
+  ensure_private_dirs
+  if [[ ! -e "$config_file" ]]; then
+    printf '%s\n' \
+      '# Private Rainfrog configuration. Never commit passwords or connection URLs.' \
+      'mouse_mode = true' \
+      'autocomplete_enabled = true' \
+      'autocomplete_debounce_ms = 100' \
+      'autocomplete_trigger_len = 1' \
+      'autopairs_enabled = true' \
+      '' \
+      '[db]' \
+      'postgres-local = { host = "localhost", driver = "postgres", port = 5432, database = "postgres" }' \
+      '' \
+      '# Examples; uncomment and adapt only on this machine:' \
+      '# mysql-local = { host = "localhost", driver = "mysql", port = 3306, database = "mysql" }' \
+      '# sqlite-local = { connection_string = "sqlite:///absolute/path/database.sqlite3", driver = "sqlite" }' \
+      > "$config_file"
+    chmod 600 -- "$config_file"
+    printf 'Created private config: %s\n' "$config_file"
+  fi
+  editor="${EDITOR:-nvim}"
+  command -v "$editor" >/dev/null 2>&1 || die "editor not found: $editor"
+  exec "$editor" "$config_file"
+}
+
+export RAINFROG_CONFIG="$config_dir"
+export RAINFROG_FAVORITES="${RAINFROG_FAVORITES:-$data_home/rainfrog/favorites}"
+
+case "${1:-}" in
+  "") require_rainfrog; ensure_private_dirs; exec rainfrog ;;
+  configure) [[ $# -eq 1 ]] || { usage >&2; exit 2; }; configure ;;
+  doctor)
+    [[ $# -eq 1 ]] || { usage >&2; exit 2; }
+    require_rainfrog
+    printf 'Rainfrog: %s\n' "$(rainfrog --version | head -n 1)"
+    printf 'Config:   %s (%s)\n' "$config_file" "$([[ -r "$config_file" ]] && printf ready || printf missing)"
+    printf 'Data:     %s\n' "$data_home/rainfrog"
+    printf 'Postgres: %s\n' "$(psql --version 2>/dev/null || printf optional-client-missing)"
+    ;;
+  reenter-password)
+    [[ $# -eq 1 ]] || { usage >&2; exit 2; }
+    require_rainfrog
+    ensure_private_dirs
+    exec rainfrog --reenter-password
+    ;;
+  --)
+    shift
+    require_rainfrog
+    ensure_private_dirs
+    exec rainfrog "$@"
+    ;;
+  -h|--help) usage ;;
+  *) printf 'db: unknown command: %s\n\n' "$1" >&2; usage >&2; exit 2 ;;
+esac
