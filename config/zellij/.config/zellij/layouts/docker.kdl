@@ -1,0 +1,21 @@
+layout {
+    tab name="docker" focus=true {
+        pane split_direction="vertical" {
+            pane size="60%" name="workspace"
+            pane stacked=true {
+                pane name="compose" expanded=true
+                pane name="logs"
+                pane name="inspect"
+            }
+        }
+        floating_panes {
+            pane name="docker-help" command="dev-help" {
+                args "docker"
+                x "10%"
+                y "10%"
+                width "80%"
+                height "80%"
+            }
+        }
+    }
+}

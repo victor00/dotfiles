@@ -12,6 +12,7 @@ config/warp/.local/share/warp-terminal/themes/operator-hacker.yaml|.local/share/
 bin/dev-help|.local/bin/dev-help
 bin/dev|.local/bin/dev
 bin/db|.local/bin/db
+bin/docker-dev|.local/bin/docker-dev
 bin/git-pr|.local/bin/git-pr
 bin/git-root|.local/bin/git-root
 bin/git-recent|.local/bin/git-recent

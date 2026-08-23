@@ -301,6 +301,7 @@ zjl general projeto       # layout geral
 zjl rails app             # Rails sem iniciar comandos automaticamente
 zjl api service-api       # API sem assumir servidor ou coleção
 zjl kubernetes infra      # terminais neutros, sem alterar cluster
+zjl docker containers     # workspace Docker/Compose sem iniciar serviços
 zellij list-sessions
 ```
 
@@ -491,7 +492,20 @@ curl -fsS URL | jq .
 <!-- dev-help:docker -->
 ## Docker e Docker Compose {#docker}
 
+Instalação e atualização são idempotentes e usam o repositório APT oficial. O plano
+é o padrão; `--apply` pede confirmação antes de APT, configuração do daemon ou
+reinício. A configuração mescla as chaves existentes com GC do BuildKit em `20GB`
+e rotação de logs `json-file` em `10m`, três arquivos. Opções novas de log valem
+para containers criados depois da mudança.
+
 ```bash
+make install-docker                   # mostra o plano, sem alterar o sistema
+./install.sh --apply docker           # instala/atualiza após confirmação
+docker-dev doctor                     # versões, acesso, daemon e uso de disco
+docker-dev cleanup                    # preview conservador
+docker-dev cleanup --apply            # sem volumes e sem imagens nomeadas
+docker-dev test                       # smoke tests descartáveis de Engine/Compose
+zjl docker containers                 # sessão Docker no Zellij
 docker compose up                    # inicia serviços em foreground
 docker compose up -d                 # inicia em background
 docker compose logs -f               # acompanha logs
@@ -500,7 +514,10 @@ docker compose config --services     # lista serviços
 docker compose down                  # ALTERA ESTADO
 ```
 
-`docker compose down -v` remove volumes e pode apagar bancos locais.
+`docker compose down -v`, `docker volume prune` e `docker system prune --volumes`
+podem apagar bancos locais. O `docker-dev cleanup` nunca remove volumes. Pertencer
+ao grupo `docker` equivale a conceder privilégios administrativos; após inclusão,
+abra uma nova sessão de login ou use `newgrp docker` conscientemente.
 <!-- /dev-help -->
 
 <!-- dev-help:kubernetes -->

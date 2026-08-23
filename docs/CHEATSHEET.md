@@ -24,7 +24,7 @@ Os 30 comandos de maior uso diário. Para o manual completo, execute
 | 17 | `zja NOME` | Cria/anexa sessão Zellij | `dev-help zellij` |
 | 18 | `dev kube` | Mostra contexto Kubernetes local | `dev-help kubernetes` |
 | 19 | `k9s` | Abre navegador Kubernetes TUI | `k9s help` |
-| 20 | `docker compose up -d` | Inicia serviços locais | `dev-help docker` |
+| 20 | `docker-dev doctor` | Diagnostica Engine, Compose e armazenamento | `dev-help docker` |
 | 21 | `dev status` | Consulta status oficial de serviços | `dev-help status` |
 | 22 | `dev localhost` | Lista portas/processos locais | `dev-help ports` |
 | 23 | `dev port 3000` | Inspeciona uma porta | `dev-help ports` |

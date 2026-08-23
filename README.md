@@ -306,6 +306,7 @@ Para testar links sem tocar no `$HOME`, use
 | LazyVim | Editor principal no terminal | `nvim .` | `dev-help lazyvim` |
 | VS Code/Cursor | Editores gráficos | `code .` | `code --help` |
 | Docker Compose | Serviços locais | `docker compose up -d` | `dev-help docker` |
+| `docker-dev` | Diagnóstico, limpeza segura e smoke tests | `docker-dev doctor` | `dev-help docker` |
 | kubectl/k9s/Helm | Operação Kubernetes | `dev kube` | `dev-help kubernetes` |
 | Terraform/GCloud | Infraestrutura e cloud | `terraform plan` | `dev-help infrastructure` |
 | `dev status` | Status público de provedores | `dev status github` | `dev-help status` |

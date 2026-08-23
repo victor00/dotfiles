@@ -1,0 +1,104 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage: docker-dev COMMAND [OPTIONS]
+
+Commands:
+  doctor             Show versions, access, daemon and disk usage
+  cleanup            Preview conservative cleanup (default)
+  cleanup --apply    Remove stopped containers/dangling images older than 7 days
+                     and trim build cache toward 20 GB; never removes volumes
+  test               Run Docker and Compose smoke tests with disposable containers
+
+Cleanup intentionally excludes named and anonymous volumes and tagged images.
+EOF
+}
+
+die() { printf 'error: %s\n' "$*" >&2; exit 1; }
+have() { command -v "$1" >/dev/null 2>&1; }
+require_docker() { have docker || die 'docker CLI is not installed'; }
+require_daemon() {
+  docker info >/dev/null 2>&1 || die 'cannot access the Docker daemon; open a new login session or check the docker group'
+}
+
+versions() {
+  docker version --format 'Docker client {{.Client.Version}} | server {{.Server.Version}}'
+  docker buildx version
+  docker compose version
+  containerd --version 2>/dev/null || true
+}
+
+doctor() {
+  require_docker
+  versions
+  printf '\nAccess\n'
+  id
+  if id -nG | tr ' ' '\n' | grep -Fxq docker; then
+    printf 'docker group: active in this session\n'
+  else
+    printf 'docker group: not active; log out/in or run newgrp docker\n'
+  fi
+  require_daemon
+  docker info --format 'storage={{.Driver}} logging={{.LoggingDriver}} cgroup={{.CgroupDriver}} root={{.DockerRootDir}}'
+  printf '\nDisk usage\n'
+  docker system df
+}
+
+cleanup_preview() {
+  require_docker
+  require_daemon
+  printf 'No volumes or tagged images will be removed.\n\n'
+  printf 'Stopped containers (only those older than 7 days are cleanup targets):\n'
+  docker ps -a --filter status=exited --format '  {{.ID}}  {{.Names}}  {{.Status}}' || true
+  printf '\nDangling images (only those older than 7 days are cleanup targets):\n'
+  docker image ls --filter dangling=true --format '  {{.ID}}  {{.CreatedSince}}  {{.Size}}' || true
+  printf '\nBuild cache:\n'
+  docker buildx du 2>/dev/null | tail -n 1 || docker system df | tail -n 1
+  printf '\nPreview only. Re-run with: docker-dev cleanup --apply\n'
+}
+
+cleanup_apply() {
+  require_docker
+  require_daemon
+  printf 'Removing only stopped containers and dangling images older than 7 days. Volumes are excluded.\n'
+  docker container prune --force --filter until=168h
+  docker image prune --force --filter until=168h
+  docker buildx prune --force --max-used-space 20gb --reserved-space 5gb
+  docker system df
+}
+
+smoke_test() {
+  require_docker
+  require_daemon
+  docker run --rm hello-world >/dev/null
+  printf '%s\n' \
+    'services:' \
+    '  smoke:' \
+    '    image: alpine:3.20' \
+    "    command: ['sh', '-c', 'echo compose-ok']" |
+    docker compose --project-name dotfiles-smoke -f - up \
+      --abort-on-container-exit --exit-code-from smoke
+  docker compose --project-name dotfiles-smoke -f - down --remove-orphans <<'EOF'
+services:
+  smoke:
+    image: alpine:3.20
+    command: ['sh', '-c', 'echo compose-ok']
+EOF
+  printf 'Docker and Compose smoke tests passed.\n'
+}
+
+case "${1:-}" in
+  doctor) [[ $# -eq 1 ]] || die 'doctor takes no options'; doctor ;;
+  cleanup)
+    case "${2:-}" in
+      '') [[ $# -eq 1 ]] || die 'unknown cleanup option'; cleanup_preview ;;
+      --apply) [[ $# -eq 2 ]] || die 'unknown cleanup option'; cleanup_apply ;;
+      *) die 'cleanup accepts only --apply' ;;
+    esac
+    ;;
+  test) [[ $# -eq 1 ]] || die 'test takes no options'; smoke_test ;;
+  -h|--help|'') usage ;;
+  *) die "unknown command: $1" ;;
+esac
