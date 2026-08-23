@@ -48,9 +48,9 @@ Finalidade: Ghostty ou Warp renderizam o terminal; Zsh fornece o shell modular, 
   textuais para não depender de símbolos ambíguos.
 - Ghostty, Starship e o realce do Zsh compartilham uma paleta Operator baseada em
   One Dark: azul `#61AFEF`, laranja vivo `#FF5F00`, vermelho `#E06C75`, verde
-  `#98C379` e roxo `#C678DD`. Slots magenta do terminal são remapeados para
-  laranja/roxo, sem rosa.
-- No prompt Starship, o diretório usa roxo forte `#C678DD`, a branch Git usa azul
+  `#98C379` e violeta `#8B5CF6`. Slots magenta do terminal são remapeados para
+  laranja/violeta, sem rosa.
+- No prompt Starship, o diretório usa violeta forte `#8B5CF6`, a branch Git usa azul
   escuro `#4B8FCC` e o estado Git usa amarelo forte `#FFB000`; o laranja vivo
   `#FF5F00` permanece como acento do tema.
 - Exemplos: `git:main`, `novos:1`, `modificados:1`, `preparados:1` e

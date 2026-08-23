@@ -121,7 +121,7 @@ em **Current Theme**, selecione `Operator Hacker` e confirme no botão de check;
 arquivo versionado em `~/.local/share/warp-terminal/themes/` compartilha azul, laranja,
 vermelho, verde e roxo com Ghostty e Starship. Use JetBrainsMono Nerd Font, peso
 Bold, cursor em bloco e mantenha ligaturas desativadas se priorizar latência.
-No prompt, diretórios usam roxo forte `#C678DD`, a branch Git usa azul escuro
+No prompt, diretórios usam violeta forte `#8B5CF6`, a branch Git usa azul escuro
 `#4B8FCC` e o estado Git usa amarelo forte `#FFB000`, com o laranja `#FF5F00`
 como acento do tema no fundo escuro.
 
