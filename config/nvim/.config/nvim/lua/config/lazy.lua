@@ -11,7 +11,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec = {
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    {
+      "LazyVim/LazyVim",
+      import = "lazyvim.plugins",
+      -- Keep lazyvim.json reproducible: read markers must not dirty dotfiles.
+      opts = { news = { lazyvim = false, neovim = false } },
+    },
     { import = "plugins" },
   },
   defaults = { lazy = false, version = false },
