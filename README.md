@@ -96,6 +96,8 @@ No diretório de um projeto, escolha o editor sem mudar de ambiente:
 ```bash
 cd ~/codigo/meu-projeto
 nvim .                    # LazyVim no terminal atual
+neovim .                  # nome alternativo para nvim
+lazyvim .                 # nome alternativo para nvim
 code .                    # VS Code no mesmo projeto
 cursor .                  # Cursor, quando desejado
 ```

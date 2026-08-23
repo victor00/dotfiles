@@ -19,7 +19,7 @@ Os 30 comandos de maior uso diário. Para o manual completo, execute
 | 12 | `git recent 10` | Lista branches recentes | `git recent -h` |
 | 13 | `git cleanup-preview` | Lista branches merged sem excluir | `git cleanup-preview -h` |
 | 14 | `lg` | Abre LazyGit | `lazygit --help` |
-| 15 | `nvim .` | Abre o projeto no LazyVim | `dev-help lazyvim` |
+| 15 | `nvim .` / `lazyvim .` | Abre o projeto no LazyVim | `dev-help lazyvim` |
 | 16 | `code .` | Abre o projeto no VS Code | `code --help` |
 | 17 | `zja NOME` | Cria/anexa sessão Zellij | `dev-help zellij` |
 | 18 | `dev kube` | Mostra contexto Kubernetes local | `dev-help kubernetes` |

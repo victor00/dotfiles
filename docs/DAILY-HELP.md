@@ -59,6 +59,8 @@ zi                       # seleção interativa de diretório
 Ctrl-R                   # histórico pesquisável pelo fzf
 dev-help --interactive   # ajuda pesquisável
 nvim .                   # abre o projeto no LazyVim
+neovim .                 # alias legível para nvim
+lazyvim .                # alias legível para nvim
 code .                   # abre o projeto no VS Code
 ```
 

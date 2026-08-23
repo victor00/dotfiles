@@ -14,6 +14,12 @@ alias gf='git fetch --all --prune'
 alias glog='git log --graph --decorate --oneline --all -20'
 alias lg='lazygit'
 
+# Friendly editor names; both open the configured LazyVim distribution.
+if (( $+commands[nvim] )); then
+  alias neovim='nvim'
+  alias lazyvim='nvim'
+fi
+
 alias d='docker'
 alias dc='docker compose'
 alias dps='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"'
