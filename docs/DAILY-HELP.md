@@ -123,12 +123,29 @@ Os instaladores mostram finalidade, origem, versão e atualização antes de agi
 
 ```bash
 gs                        # status compacto
+gst                       # status compacto (forma fácil de lembrar)
 gd                        # diff não staged
 gds                       # diff staged
 lg                        # abre LazyGit
-gh pr view --web          # abre o PR atual
-gh pr checks              # mostra checks do PR
+git pr                    # abre o PR; na branch padrão abre o repositório
+git pr --url              # imprime a URL do PR
+git pr --status           # detalhes do PR
+git pr --checks           # checks do PR
+git pr --diff             # diff do PR
+git pr --comments         # PR e comentários
+git pr --create           # inicia a criação guiada pelo gh
+git root                  # imprime a raiz do repositório
+git recent 10             # branches locais atualizadas recentemente
+git cleanup-preview       # lista branches merged; nunca apaga
+dev project orchestrator  # encontra o projeto; `z` também usa esse fallback
+dev find orchestrator     # localiza arquivos e pastas pelo nome
+dev directory orchestrator # localiza somente pastas
+dev file application.rb   # localiza somente arquivos
+z orchestrator            # acessa por histórico ou busca pelo nome
 ```
+
+Quando a navegação com `z` funciona, `✓ /caminho` aparece em verde. A confirmação
+respeita `NO_COLOR` e continua legível sem suporte a cores.
 
 `git reset --hard`, force push e descarte no LazyGit podem perder trabalho. Revise alvo e diff antes.
 <!-- /dev-help -->

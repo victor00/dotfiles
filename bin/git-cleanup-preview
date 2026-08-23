@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ "${1:-}" == -h || "${1:-}" == --help ]]; then
+  cat <<'EOF'
+Usage: git cleanup-preview
+
+List local branches already merged into the default branch. This command never
+deletes branches. It excludes the current, default, main, master and develop branches.
+EOF
+  exit 0
+fi
+[[ $# -eq 0 ]] || { printf 'git cleanup-preview: this command takes no arguments\n' >&2; exit 2; }
+
+root="$(git rev-parse --show-toplevel 2>/dev/null)" || {
+  printf 'git cleanup-preview: not inside a Git repository\n' >&2
+  exit 1
+}
+cd -- "$root"
+
+current="$(git symbolic-ref --quiet --short HEAD 2>/dev/null || true)"
+default_branch="$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null || true)"
+default_branch="${default_branch#origin/}"
+if [[ -z "$default_branch" ]]; then
+  if git show-ref --verify --quiet refs/heads/main; then default_branch=main
+  elif git show-ref --verify --quiet refs/heads/master; then default_branch=master
+  else
+    printf 'git cleanup-preview: cannot determine the default branch\n' >&2
+    exit 1
+  fi
+fi
+
+printf 'Merged local branches safe to review (base: %s):\n' "$default_branch"
+found=false
+while IFS= read -r branch; do
+  branch="${branch#\* }"
+  branch="${branch#  }"
+  case "$branch" in
+    ""|"$current"|"$default_branch"|main|master|develop) continue ;;
+  esac
+  printf '  %s\n' "$branch"
+  found=true
+done < <(git branch --merged "$default_branch" --format='%(refname:short)')
+
+[[ "$found" == true ]] || printf '  none\n'
+printf '\nPreview only; no branches were deleted.\n'

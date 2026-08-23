@@ -13,5 +13,7 @@ A árvore antiga permanece intacta durante a primeira fase. A configuração nov
 7. Valide Zellij e layouts.
 8. Rode `scripts/link-config` e trate cada conflito individualmente.
 9. Só então use `--apply --backup`.
+10. Confirme `~/.local/bin` no `PATH`, aplique os links de `dev`/`git-*` e execute
+    `exec zsh` antes de testar `gst`, `z NOME`, `dev find NOME` e `git pr -h`.
 
 mise será introduzido gradualmente. rbenv e NVM continuam funcionando enquanto cada projeto é testado.

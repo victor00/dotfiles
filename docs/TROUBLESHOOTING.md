@@ -9,6 +9,24 @@ zsh -xlic exit 2>/tmp/zsh-startup.log
 
 O Zellij automático só ocorre quando `DOTFILES_AUTO_ZELLIJ=1`.
 
+Se `gst`, `..`, `dev` ou `git pr` não forem encontrados após uma atualização:
+
+```bash
+scripts/link-config             # confirma se os destinos estão linked/missing
+scripts/link-config --apply     # cria apenas links ausentes
+exec zsh                        # recarrega PATH, aliases e funções
+command -v dev git-pr
+```
+
+`z NOME` consulta primeiro o histórico do zoxide. Sem correspondência, procura um
+projeto Git ou pasta por nome. Se houver várias pastas, escolha uma no fzf ou refine
+o nome. `dev find NOME` mostra todos os caminhos sem mudar de diretório. A linha
+verde `✓ /caminho` confirma que a navegação terminou com sucesso.
+
+Na branch padrão, `git pr` abre o repositório. Nas demais branches, a mensagem “no
+pull request found” indica que não existe PR associado; use `git pr --create` se a
+criação for desejada. Confira autenticação com `gh auth status`.
+
 ## fzf
 
 fzf 0.29 não possui `fzf --zsh`. A configuração usa integração direta somente quando a opção existe; caso contrário, usa scripts do Ubuntu.

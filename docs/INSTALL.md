@@ -41,6 +41,11 @@ scripts/link-config --apply          # somente destinos ausentes
 scripts/link-config --apply --backup # conflitos vão para backup datado
 ```
 
+Além das configurações, o manifesto vincula `dev-help`, `dev` e os executáveis
+`git-*` em `~/.local/bin`. O Zsh gerenciado inclui esse diretório no `PATH`; por isso
+`bin/git-pr` é descoberto automaticamente pelo Git como `git pr`. Após criar links
+em um shell já aberto, rode `exec zsh` para recarregar aliases e funções.
+
 Nunca use `--backup` sem revisar cada conflito mostrado no dry-run. O destino pode ser alterado para testes:
 
 ```bash

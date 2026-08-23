@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage: git pr [OPTION]
+
+Open or inspect the pull request associated with the current branch. On the
+repository's default branch, --view opens the repository page instead.
+
+Options:
+  --view       Open the pull request in the browser (default)
+  --url        Print the pull request URL
+  --status     Show pull request details
+  --checks     Show CI checks
+  --diff       Show the pull request diff
+  --comments   Show the pull request with comments
+  --create     Start GitHub CLI's pull request creation flow
+  -h, --help   Show this help
+EOF
+}
+
+die() {
+  printf 'git pr: %s\n' "$*" >&2
+  exit 1
+}
+
+require_command() {
+  command -v "$1" >/dev/null 2>&1 || die "required command not found: $1"
+}
+
+mode="${1:---view}"
+[[ $# -le 1 ]] || { usage >&2; exit 2; }
+
+case "$mode" in
+  -h|--help) usage; exit 0 ;;
+  --view|--url|--status|--checks|--diff|--comments|--create) ;;
+  *) printf 'git pr: unknown option: %s\n\n' "$mode" >&2; usage >&2; exit 2 ;;
+esac
+
+require_command git
+require_command gh
+
+repo_root="$(git rev-parse --show-toplevel 2>/dev/null)" || die 'not inside a Git repository'
+cd -- "$repo_root"
+
+[[ -n "$(git remote 2>/dev/null)" ]] || die 'this repository has no remote'
+branch="$(git symbolic-ref --quiet --short HEAD 2>/dev/null)" || die 'HEAD is detached; check out a branch first'
+gh auth status >/dev/null 2>&1 || die 'GitHub CLI is not authenticated; run: gh auth login'
+
+if [[ "$mode" == --create ]]; then
+  exec gh pr create
+fi
+
+default_branch="$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null || true)"
+default_branch="${default_branch#origin/}"
+if [[ -z "$default_branch" ]]; then
+  default_branch="$(gh repo view --json defaultBranchRef --jq '.defaultBranchRef.name' 2>/dev/null || true)"
+fi
+
+if [[ "$mode" == --view && -n "$default_branch" && "$branch" == "$default_branch" ]]; then
+  printf 'git pr: %s is the default branch; opening the repository page\n' "$branch"
+  exec gh repo view --web
+fi
+
+if ! gh pr view "$branch" --json number >/dev/null 2>&1; then
+  die "no pull request found for branch: $branch (create one with: git pr --create)"
+fi
+
+case "$mode" in
+  --view) exec gh pr view "$branch" --web ;;
+  --url) exec gh pr view "$branch" --json url --jq '.url' ;;
+  --status) exec gh pr view "$branch" ;;
+  --checks) exec gh pr checks "$branch" ;;
+  --diff) exec gh pr diff "$branch" ;;
+  --comments) exec gh pr view "$branch" --comments ;;
+esac

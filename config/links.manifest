@@ -9,3 +9,8 @@ config/lazygit/.config/lazygit|.config/lazygit
 config/starship/.config/starship.toml|.config/starship.toml
 config/ghostty/.config/ghostty|.config/ghostty
 bin/dev-help|.local/bin/dev-help
+bin/dev|.local/bin/dev
+bin/git-pr|.local/bin/git-pr
+bin/git-root|.local/bin/git-root
+bin/git-recent|.local/bin/git-recent
+bin/git-cleanup-preview|.local/bin/git-cleanup-preview

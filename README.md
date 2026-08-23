@@ -61,6 +61,7 @@ dev-help --interactive
 dev-help rails
 dev-help kubernetes
 dev-help api
+dev-help git
 ```
 
 Consulte [docs/DAILY-HELP.md](docs/DAILY-HELP.md) para o manual completo.
@@ -97,6 +98,23 @@ O prompt exibe diretório, Git e relógio sempre; runtimes e ferramentas de
 infraestrutura aparecem somente em projetos detectados. Usuário/host aparecem
 somente por SSH ou como root. Comandos acima de 1,5 s mostram a duração, e o símbolo
 final fica azul em sucesso ou vermelho em erro.
+
+### Comandos de fluxo diário
+
+Os executáveis em `bin/git-*` viram subcomandos nativos do Git quando vinculados em
+`~/.local/bin`: use `git pr`, `git root`, `git recent` e `git cleanup-preview`.
+`git pr -h` lista as ações de PR disponíveis. Para projetos ainda não aprendidos
+pelo zoxide, `dev project NOME` imprime o caminho e `z NOME` usa essa busca como
+fallback. Configure raízes menores com `DEV_PROJECT_ROOTS=~/trabalho:~/pessoal`.
+Na branch padrão, `git pr` abre a página principal do repositório em vez de procurar
+um PR para `main`/`master`.
+Para localizar nomes diretamente, use `dev find NOME`, `dev directory NOME` ou
+`dev file NOME`; as buscas incluem diretórios ocultos, mas ignoram conteúdos `.git`.
+Ao navegar com `z NOME`, uma confirmação verde mostra o diretório acessado; com
+`NO_COLOR` definido, a mesma mensagem é exibida sem sequências de cor.
+
+No shell, `gst` mostra o status Git e `..` sobe um diretório. Consulte exemplos e
+cuidados em `dev-help git`.
 
 ## Segurança
 

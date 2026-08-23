@@ -6,6 +6,7 @@
 | Terminal | Ghostty, JetBrainsMono Nerd Font | pacote oficial para Ubuntu; renderização, símbolos e superfícies GTK |
 | Multiplexador | Zellij | release oficial fixada; sessões, abas, painéis e layouts |
 | Aplicativos TUI | LazyGit, eza | release oficial fixada |
+| Fluxo diário | `git pr`, `git root`, `git recent`, `git cleanup-preview`, `dev project` | scripts locais em `bin/`, sem credenciais ou exclusões automáticas |
 | Arquivos | ripgrep, fd, bat, jq, yq | sistema quando compatível |
 | Runtime | mise | versões definidas pelo projeto |
 | Ruby | Ruby LSP, RuboCop | projeto/Bundler quando fixado; Mason como fallback |

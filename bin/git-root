@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ "${1:-}" == -h || "${1:-}" == --help ]]; then
+  printf 'Usage: git root\n\nPrint the absolute path to the current repository root.\n'
+  exit 0
+fi
+[[ $# -eq 0 ]] || { printf 'git root: this command takes no arguments\n' >&2; exit 2; }
+
+git rev-parse --show-toplevel 2>/dev/null || {
+  printf 'git root: not inside a Git repository\n' >&2
+  exit 1
+}

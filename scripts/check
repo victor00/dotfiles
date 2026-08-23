@@ -4,7 +4,7 @@ set -Eeuo pipefail
 repo_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
 cd "$repo_root"
 
-shell_files=(install.sh bootstrap/*.sh bootstrap/lib/*.sh bin/dev-help scripts/doctor scripts/link-config scripts/check)
+shell_files=(install.sh bootstrap/*.sh bootstrap/lib/*.sh bin/* scripts/doctor scripts/link-config scripts/check)
 for file_name in "${shell_files[@]}"; do bash -n "$file_name"; done
 
 if command -v shellcheck >/dev/null 2>&1; then

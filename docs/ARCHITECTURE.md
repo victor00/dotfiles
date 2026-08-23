@@ -23,6 +23,8 @@ Ghostty
   multiplexador.
 - **LazyGit** concentra a interface Git. Git CLI continua disponível para scripts e
   operações pontuais.
+- **Comandos em `bin/`** formam uma camada pequena e descobrível. O Git encontra
+  `git-*` pelo `PATH`; `dev` localiza projetos e caminhos sem manter índice próprio.
 - **Claude, Cursor e Codex** são agentes de desenvolvimento. Autenticação e contexto
   enviado ficam fora dos dotfiles.
 
@@ -39,6 +41,8 @@ Ghostty
 5. Starship não gerencia runtimes, diretórios, sessões ou aliases.
 6. Ghostty seleciona JetBrainsMono Nerd Font para renderizar os símbolos do
    Starship, do `eza` e das interfaces TUI de forma consistente.
+7. Helpers de Git validam repositório, remote, branch, dependências e autenticação
+   antes de delegar ao Git ou GitHub CLI. Operações destrutivas nunca são implícitas.
 
 Ao abrir o Ghostty, `command = zellij attach --create work` cria ou anexa a sessão
 principal em cada superfície. As abas GTK são clientes visuais e não substituem as
