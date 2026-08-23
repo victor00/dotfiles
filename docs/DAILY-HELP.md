@@ -50,8 +50,9 @@ Finalidade: Ghostty ou Warp renderizam o terminal; Zsh fornece o shell modular, 
   One Dark: azul `#61AFEF`, laranja vivo `#FF5F00`, vermelho `#E06C75`, verde
   `#98C379` e roxo `#C678DD`. Slots magenta do terminal são remapeados para
   laranja/roxo, sem rosa.
-- No prompt Starship, o diretório usa o azul médio-escuro `#4B8FCC` e a branch Git
-  usa laranja vivo `#FF5F00`; o roxo fica reservado para contexto técnico secundário.
+- No prompt Starship, o diretório usa roxo forte `#C678DD`, a branch Git usa azul
+  escuro `#4B8FCC` e o estado Git usa amarelo forte `#FFB000`; o laranja vivo
+  `#FF5F00` permanece como acento do tema.
 - Exemplos: `git:main`, `novos:1`, `modificados:1`, `preparados:1` e
   `ruby:v3.4.4`. `novos` significa arquivos ainda não rastreados pelo Git.
 - Usuário/host aparecem somente em SSH ou como root. Runtimes, Docker, Kubernetes,

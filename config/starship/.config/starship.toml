@@ -39,16 +39,16 @@ style = "bold peach"
 truncation_length = 4
 truncate_to_repo = true
 read_only = " 󰌾"
-style = "bold blue"
+style = "bold mauve"
 
 [git_branch]
 symbol = "git:"
 format = "[$symbol$branch(:$remote_branch)]($style) "
-style = "bold peach"
+style = "bold blue"
 
 [git_status]
 format = "([$all_status$ahead_behind]($style) )"
-style = "bold lavender"
+style = "bold yellow"
 ahead = "enviar:${count} "
 behind = "receber:${count} "
 diverged = "divergiu:enviar-${ahead_count}/receber-${behind_count} "
