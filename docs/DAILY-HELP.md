@@ -295,10 +295,20 @@ Configuração: `config/nvim/.config/nvim`. Requer Neovim estável `>= 0.11.2`.
 gd definição                  gr referências
 K documentação                <leader>cf formatação
 <leader>gg LazyGit             <leader>gb blame
+<leader>gi issues GitHub       <leader>gp pull requests GitHub
+<leader>cs símbolos            <leader>cn gerar documentação
+<leader>ow lista de tarefas    <leader>oo executar tarefa
+<leader>rs refatorar           <leader>fp projetos
 <leader>tt teste próximo       <leader>tf arquivo de testes
 <leader>db breakpoint          <leader>dc continuar debug
 <leader>? keymaps do buffer    :checkhealth
 ```
+
+Extras selecionados incluem Mini Surround/Move, Neogen, Aerial, Overseer,
+Refactoring, Tree-sitter Context, Octo, Project, REST/Kulala, Prettier, ESLint,
+TypeScript VTSLS e Tailwind. Eles são carregados sob demanda; atalhos específicos de
+REST (`<leader>R`) aparecem em arquivos `.http`, e contexto Tree-sitter somente em
+buffers compatíveis.
 
 Ajuda: `<leader>hh`; Kubernetes `<leader>hk`; Rails `<leader>hr`; APIs `<leader>ha`; Zellij `<leader>hz`. Recursos pesados: `NVIM_DISABLE_AI=1`, `NVIM_DISABLE_DAP=1` ou `NVIM_DISABLE_TESTS=1`.
 <!-- /dev-help -->

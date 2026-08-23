@@ -104,7 +104,9 @@ cursor .                  # Cursor, quando desejado
 
 No LazyVim, `<leader>` é `Espaço`: `<leader><space>` localiza arquivos,
 `<leader>/` pesquisa no projeto, `<leader>gg` abre o LazyGit e `<leader>?` mostra os
-atalhos disponíveis. No VS Code, abra o terminal integrado com `` Ctrl-` ``; ele usa
+atalhos disponíveis. O perfil inclui extras sob demanda para símbolos, refatoração,
+tarefas, testes, GitHub, REST, TypeScript/Tailwind e formatação/lint. No VS Code,
+abra o terminal integrado com `` Ctrl-` ``; ele usa
 o Zsh e o Starship, mas não inicia outro Zellij dentro do editor. Se o perfil não for
 Zsh, use `Terminal: Select Default Profile`, escolha `zsh` e abra um terminal novo.
 
