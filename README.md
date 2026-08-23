@@ -78,6 +78,7 @@ setup.sh     assistente interativo para selecionar, explicar e pular grupos
 ```bash
 dev-help
 dev-help --interactive
+dev-help shortcuts
 dev-help rails
 dev-help kubernetes
 dev-help api
@@ -328,6 +329,7 @@ Para testar links sem tocar no `$HOME`, use
 | Terraform/GCloud | Infraestrutura e cloud | `terraform plan` | `dev-help infrastructure` |
 | `dev status` | Status público de provedores | `dev status github` | `dev-help status` |
 | `dev ports` | Portas e processos locais | `dev port 3000` | `dev-help ports` |
+| Aliases e funções por contexto | Atalhos de Kubernetes, Git, Docker e terminal | `dev-help shortcuts` | `type kuse` |
 | curl/HTTPie | Requisições HTTP | `http GET :3000/health` | `dev-help api` |
 | jq/yq | Consulta JSON/YAML | `jq '.items[]' file.json` | `dev-help json` |
 | Rainfrog | Navegador SQL TUI | `db` | `dev-help database` |
@@ -335,7 +337,8 @@ Para testar links sem tocar no `$HOME`, use
 | ShellCheck/shfmt | Validação de shell | `make check` | `shellcheck --help` |
 
 Use `dev-help --list` para todas as categorias e `dev-help --interactive` para
-selecioná-las com fzf.
+selecioná-las com fzf. Use `dev-help shortcuts` (ou `dev-help commands`) para
+consultar aliases e funções agrupados por contexto, incluindo `kuse` e `knuse`.
 
 ## Segurança
 

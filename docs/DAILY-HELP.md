@@ -188,25 +188,70 @@ não presume que toda porta fale HTTP. Nenhum comando encerra processos; `dev op
 confirma que há um listener e só então abre HTTP quando chamado diretamente.
 <!-- /dev-help -->
 
-<!-- dev-help:aliases -->
-## Aliases e funções
+<!-- dev-help:shortcuts -->
+## Shortcuts by context {#shortcuts}
 
-Git: `g`, `gs`, `ga`, `gaa`, `gc`, `gd`, `gds`, `gf`, `glog`, `lg`.
-
-Docker: `d`, `dc`, `dps`, `dlogs`. Kubernetes: `k`, `kctx`, `kcontexts`, `kgp`, `kgpa`, `klf`, `k9`.
-
-Funções:
+### Kubernetes
 
 ```bash
-mkcd projeto             # cria e entra no diretório
-croot                    # vai à raiz do Git
-port 3000                # mostra o listener, sem encerrar processos
-kwhere                   # mostra contexto/namespace atuais
-kuse                     # troca contexto após confirmação; ALTERA ESTADO local
-knuse                    # troca namespace após confirmação; ALTERA ESTADO local
-zja projeto              # cria/anexa sessão Zellij
-zjl api minha-api        # inicia layout api na sessão indicada
+kwhere                   # show the current context and namespace
+kctx                     # show the current context
+kcontexts                # list configured contexts
+kuse                     # select a context with fzf; CHANGES local state
+knuse                    # select a namespace with fzf; CHANGES local state
+k                        # kubectl
+kgp                      # kubectl get pods
+kgpa                     # list pods across all namespaces
+klf POD                  # follow pod logs
+k9                       # open k9s
 ```
+
+`kuse` and `knuse` require `kubectl` and `fzf` and ask for confirmation before
+changing local state. `knuse` queries namespaces from the cluster.
+
+### Git
+
+```bash
+g                        # git
+gs                       # show compact status with branch
+ga FILE                  # stage a file
+gaa                      # stage all changes
+gc                       # create a commit
+gd                       # show unstaged changes
+gds                      # show staged changes
+gf                       # fetch remotes and prune stale references
+glog                     # show compact graph history
+lg                       # open Lazygit
+croot                    # go to the current repository root
+```
+
+### Docker
+
+```bash
+d                        # docker
+dc                       # docker compose
+dps                      # show containers, status, and ports as a table
+dlogs                    # follow recent Compose logs
+```
+
+### Navigation and terminal
+
+```bash
+mkcd project             # create and enter a directory
+port 3000                # show the listener without stopping processes
+zja project              # create or attach to a Zellij session
+zjl api my-api           # start the api layout in the given session
+```
+
+To inspect how any shortcut is defined in Zsh:
+
+```bash
+type kuse                 # show the function definition
+whence -v kgp             # identify an alias, function, or executable
+alias                     # list all loaded aliases
+```
+
+This topic is also available through `dev-help aliases` or `dev-help commands`.
 <!-- /dev-help -->
 
 <!-- dev-help:files -->

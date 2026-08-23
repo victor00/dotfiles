@@ -28,6 +28,7 @@ topics() {
 
 canonical_topic() {
   case "$1" in
+    aliases|commands) printf 'shortcuts\n' ;;
     ruby|rspec) printf 'rails\n' ;;
     kube|k8s|kubectl|helm) printf 'kubernetes\n' ;;
     nvim|neovim) printf 'lazyvim\n' ;;
