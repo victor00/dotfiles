@@ -4,6 +4,10 @@ Ambiente modular e reproduzível para desenvolvimento no Ubuntu. Warp ou Ghostty
 renderizam o terminal; Zellij é o único multiplexador; Zsh é o shell; Starship é o
 prompt; LazyVim, VS Code e Cursor são os editores; LazyGit concentra o fluxo Git.
 
+O perfil do Ghostty usa o tema One Dark Pro Mix, JetBrains Mono 13, transparência
+leve e abas GTK. Cada nova superfície anexa à sessão principal `work` do Zellij.
+No shell, `ls`, `ll` e `tree` usam `eza` quando ele está disponível.
+
 ## Início rápido
 
 ```bash
@@ -59,6 +63,12 @@ dev-help api
 ```
 
 Consulte [docs/DAILY-HELP.md](docs/DAILY-HELP.md) para o manual completo.
+
+Recarregue o Ghostty com `Ctrl-Shift-,`. Para conferir os valores efetivos:
+
+```bash
+ghostty +show-config | rg 'theme|font-family|font-size|background-opacity'
+```
 
 ## Segurança
 

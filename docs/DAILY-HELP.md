@@ -25,8 +25,11 @@ Este é o manual operacional e a fonte de conteúdo do comando `dev-help`. Ferra
 Finalidade: Ghostty renderiza o terminal; Zsh fornece o shell modular, e Starship somente o prompt. Zellij cuida de sessões, abas e painéis.
 
 - Configuração: `config/ghostty/`, `config/zsh/` e `config/starship/`.
-- Ghostty não define splits ou abas: esses atalhos pertencem exclusivamente ao Zellij.
+- Ghostty usa abas GTK para superfícies; Zellij continua responsável por sessões,
+  layouts e panes dentro de cada superfície.
 - Ghostty abre `zellij attach --create work`; recuperação: `ghostty -e zsh -l`.
+- Ghostty: `Ctrl-Shift-T` nova aba, `Ctrl-Shift-W` fecha superfície,
+  `Ctrl-PageDown/PageUp` navega e `Ctrl-Shift-,` recarrega a configuração.
 - Atualização: pelo grupo `make install-terminal`, após revisar o plano exibido.
 - Desabilitar integração: comente o módulo correspondente ou use `local.zsh` fora do Git.
 - Zellij automático é opt-in com `DOTFILES_AUTO_ZELLIJ=1`.
@@ -79,6 +82,9 @@ zjl api minha-api        # inicia layout api na sessão indicada
 fd controller app/
 rg 'TODO|FIXME' --glob '*.rb'
 bat config/routes.rb
+ls                        # eza com ícones automáticos
+ll                        # detalhes, ocultos e estado Git
+tree                      # árvore com ícones automáticos
 jq '.items[] | .metadata.name' response.json
 yq '.services | keys' docker-compose.yml
 ```

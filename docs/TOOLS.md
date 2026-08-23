@@ -3,7 +3,7 @@
 | Área | Ferramentas | Instalação/ownership |
 |---|---|---|
 | Shell | Zsh, fzf, zoxide, Starship | sistema ou release fixada |
-| Terminal | Ghostty | pacote oficial para Ubuntu; somente renderização e integração do shell |
+| Terminal | Ghostty | pacote oficial para Ubuntu; renderização, integração do shell e superfícies GTK |
 | Multiplexador | Zellij | release oficial fixada; sessões, abas, painéis e layouts |
 | Aplicativos TUI | LazyGit, eza | release oficial fixada |
 | Arquivos | ripgrep, fd, bat, jq, yq | sistema quando compatível |

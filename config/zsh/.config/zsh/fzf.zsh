@@ -4,10 +4,11 @@
 if [[ -o zle ]]; then
   if fzf --help 2>&1 | command grep -q -- '--zsh'; then
     source <(fzf --zsh)
+  elif [[ -r "$HOME/.fzf.zsh" ]]; then
+    source "$HOME/.fzf.zsh"
   else
     [[ -r /usr/share/doc/fzf/examples/key-bindings.zsh ]] && source /usr/share/doc/fzf/examples/key-bindings.zsh
     [[ -r /usr/share/doc/fzf/examples/completion.zsh ]] && source /usr/share/doc/fzf/examples/completion.zsh
-    [[ -r "$HOME/.fzf.zsh" ]] && source "$HOME/.fzf.zsh"
   fi
 fi
 

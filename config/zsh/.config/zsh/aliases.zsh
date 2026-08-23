@@ -28,6 +28,10 @@ alias k9='k9s'
 alias zj='zellij attach --create work'
 alias zj-ls='zellij list-sessions'
 
-(( $+commands[eza] )) && alias ls='eza --group-directories-first' && alias ll='eza -lah --git --group-directories-first'
+if (( $+commands[eza] )); then
+  alias ls='eza --icons=auto'
+  alias ll='eza -lah --icons=auto --git'
+  alias tree='eza --tree --icons=auto'
+fi
 if (( $+commands[bat] )); then alias cat='bat --paging=never'; elif (( $+commands[batcat] )); then alias cat='batcat --paging=never'; fi
 (( ! $+commands[fd] && $+commands[fdfind] )) && alias fd='fdfind'
