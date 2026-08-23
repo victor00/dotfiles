@@ -32,7 +32,8 @@ Finalidade: Ghostty ou Warp renderizam o terminal; Zsh fornece o shell modular, 
   externos não são presumidos em instalações novas.
 
 - Configuração: `config/ghostty/`, `config/zsh/` e `config/starship/`.
-- Tema do Warp: `config/warp/`; selecione `Operator Hacker` em Appearance. Panes
+- Tema do Warp: `config/warp/`, vinculado em `~/.warp/themes/`; selecione
+  `Operator Hacker` em Appearance > Current Theme e confirme no check. Panes
   nativos: `Ctrl-Shift-D/E`, foco com `Ctrl-Alt-Setas`, maximizar com
   `Ctrl-Shift-Enter` e fechar com `Ctrl-Shift-W`.
 - Ghostty usa abas GTK para superfícies; Zellij continua responsável por sessões,
@@ -48,6 +49,8 @@ Finalidade: Ghostty ou Warp renderizam o terminal; Zsh fornece o shell modular, 
   One Dark: azul `#61AFEF`, laranja `#D19A66`, vermelho `#E06C75`, verde
   `#98C379` e roxo `#C678DD`. Slots magenta do terminal são remapeados para
   laranja/roxo, sem rosa.
+- No prompt Starship, o diretório usa o azul médio-escuro `#4B8FCC` e a branch Git
+  usa laranja `#D19A66`; o roxo fica reservado para contexto técnico secundário.
 - Exemplos: `git:main`, `novos:1`, `modificados:1`, `preparados:1` e
   `ruby:v3.4.4`. `novos` significa arquivos ainda não rastreados pelo Git.
 - Usuário/host aparecem somente em SSH ou como root. Runtimes, Docker, Kubernetes,

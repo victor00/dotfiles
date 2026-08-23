@@ -16,7 +16,9 @@ Warp (panes nativos) ou Ghostty
 - **Ghostty** renderiza o terminal, fornece integração com o shell e pode organizar
   superfícies em abas GTK. Cada superfície continua executando o cliente Zellij.
 - **Warp** pode organizar abas e panes nativamente para trabalho local curto. Seu
-  tema é versionado, mas preferências internas, conta, histórico e estado não são.
+  diretório de temas `~/.warp/themes/` é vinculado ao dotfiles para que o scanner
+  encontre arquivos YAML; preferências internas, conta, histórico e estado não são
+  versionados.
 - **Zellij** é o único multiplexador. Controla sessões, abas, painéis, layouts e
   restauração quando disponível.
 - **Zsh** é o shell interativo; **Starship** é somente o prompt. Seu tema

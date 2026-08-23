@@ -116,10 +116,13 @@ Zsh, use `Terminal: Select Default Profile`, escolha `zsh` e abra um terminal no
 
 ### Warp sem Zellij
 
-Abra o Warp pelo menu ou com `warp-terminal`. Em **Settings > Appearance > Themes**,
-selecione `Operator Hacker`; o arquivo versionado compartilha azul, laranja,
+Abra o Warp pelo menu ou com `warp-terminal`. Em **Settings > Appearance**, clique
+em **Current Theme**, selecione `Operator Hacker` e confirme no botão de check; o
+arquivo versionado em `~/.warp/themes/` compartilha azul, laranja,
 vermelho, verde e roxo com Ghostty e Starship. Use JetBrainsMono Nerd Font, peso
 Bold, cursor em bloco e mantenha ligaturas desativadas se priorizar latência.
+No prompt, diretórios usam azul médio-escuro `#4B8FCC` e a branch Git usa laranja
+`#D19A66`, evitando o rosa sem perder contraste no fundo escuro.
 
 O fluxo enxuto usa os panes nativos: `Ctrl-Shift-D` divide à direita,
 `Ctrl-Shift-E` divide abaixo, `Ctrl-Alt-Setas` muda o foco,
