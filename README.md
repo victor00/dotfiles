@@ -131,6 +131,12 @@ O fluxo enxuto usa os panes nativos: `Ctrl-Shift-D` divide à direita,
 `nvim .`, servidor e testes em panes separados; use Zellij somente quando precisar
 de sessões persistentes ou reconexão.
 
+Para histórico, `Ctrl-R` abre a busca rica do Warp. Digite `history:` (ou `h:`)
+antes do texto para mostrar somente comandos, use as setas para navegar e `Enter`
+para inserir o resultado sem executá-lo. `Alt-R` abre diretamente o histórico
+compartilhado do Zsh no `fzf`; esse fallback também funciona no Ghostty, Zellij e
+terminais integrados. `Ctrl-Shift-R` fica reservado para Workflows do Warp.
+
 O prompt usa rótulos legíveis: `git:main`, `novos:1`, `modificados:1` e
 `ruby:v3.4.4`, por exemplo. Diretório, Git e relógio aparecem sempre; runtimes e
 ferramentas de infraestrutura aparecem somente em projetos detectados. Usuário/host aparecem
@@ -291,7 +297,7 @@ Para testar links sem tocar no `$HOME`, use
 | ripgrep (`rg`) | Busca texto em projetos | `rg 'TODO|FIXME'` | `rg --help` |
 | eza | Lista arquivos com Git/ícones | `ll` | `eza --help` |
 | bat | Exibe arquivos com syntax highlight | `bat README.md` | `bat --help` |
-| fzf | Seleção interativa | `Ctrl-R` | `fzf --help` |
+| fzf | Histórico local e seleção interativa | `Alt-R` | `fzf --help` |
 | Git | Controle de versão | `gst` | `dev-help git` |
 | `git pr` | Abre/inspeciona PR da branch | `git pr --checks` | `git pr -h` |
 | LazyGit | Interface Git TUI | `lg` | `lazygit --help` |

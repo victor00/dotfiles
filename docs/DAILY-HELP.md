@@ -68,7 +68,9 @@ Comandos:
 exec zsh                 # inicia uma sessão nova sem source duplicado
 z nome                   # navega por frequência com zoxide
 zi                       # seleção interativa de diretório
-Ctrl-R                   # histórico pesquisável pelo fzf
+Ctrl-R                   # busca rica do Warp; use history: ou h: para comandos
+Alt-R                    # histórico local/compartilhado do Zsh via fzf
+Ctrl-Shift-R             # Workflows no Warp
 dev-help --interactive   # ajuda pesquisável
 nvim .                   # abre o projeto no LazyVim
 neovim .                 # alias legível para nvim
@@ -82,6 +84,12 @@ No terminal integrado do VS Code, use `` Ctrl-` ``. Se necessário, selecione Zs
 dentro do editor.
 
 Problemas comuns: rode `zsh -n ~/.zshrc` para sintaxe e `make doctor` para dependências. Configuração privada pertence a `~/.config/zsh/local.zsh`.
+
+O histórico mantém até 100 mil entradas, compartilha comandos entre shells e
+remove duplicatas. Comandos iniciados por espaço não são salvos. O Warp mantém
+metadados próprios por sessão; ao fechar panes ele combina o histórico, enquanto
+`Alt-R` consulta imediatamente o arquivo local do Zsh. Nenhuma das buscas executa a
+seleção automaticamente.
 <!-- /dev-help -->
 
 <!-- dev-help:database -->

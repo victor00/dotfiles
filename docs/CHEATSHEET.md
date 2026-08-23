@@ -34,7 +34,7 @@ Os 30 comandos de maior uso diário. Para o manual completo, execute
 | 27 | `psql -d BANCO` | Abre PostgreSQL diretamente | `psql --help` |
 | 28 | `http GET :3000/health` | Faz requisição HTTP | `dev-help api` |
 | 29 | `jq . arquivo.json` | Consulta/formata JSON | `dev-help json` |
-| 30 | `rg 'PADRÃO'` | Pesquisa texto no projeto | `rg --help` |
+| 30 | `Ctrl-R` / `Alt-R` | Busca rica do Warp / histórico Zsh com fzf | `dev-help shell` |
 
 Comandos marcados como preview/leitura não alteram recursos. Antes de operações Git,
 Docker, Kubernetes, banco ou infraestrutura que escrevam estado, revise alvo e diff.
