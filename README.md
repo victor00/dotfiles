@@ -122,7 +122,7 @@ arquivo versionado em `~/.local/share/warp-terminal/themes/` compartilha azul, l
 vermelho, verde e roxo com Ghostty e Starship. Use JetBrainsMono Nerd Font, peso
 Bold, cursor em bloco e mantenha ligaturas desativadas se priorizar latência.
 No prompt, diretórios usam azul médio-escuro `#4B8FCC` e a branch Git usa laranja
-`#FF8C00`, bem saturado para se destacar no fundo escuro.
+`#FF5F00`, vivo e bem saturado para se destacar no fundo escuro.
 
 O fluxo enxuto usa os panes nativos: `Ctrl-Shift-D` divide à direita,
 `Ctrl-Shift-E` divide abaixo, `Ctrl-Alt-Setas` muda o foco,

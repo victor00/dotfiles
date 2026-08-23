@@ -1,6 +1,6 @@
 name: Operator Hacker
-accent: "#FF8C00"
-cursor: "#FF8C00"
+accent: "#FF5F00"
+cursor: "#FF5F00"
 background: "#21252B"
 foreground: "#ABB2BF"
 details: darker
@@ -9,7 +9,7 @@ terminal_colors:
     black: "#21252B"
     red: "#E06C75"
     green: "#98C379"
-    yellow: "#FF8C00"
+    yellow: "#FF5F00"
     blue: "#4B8FCC"
     magenta: "#C678DD"
     cyan: "#56B6C2"

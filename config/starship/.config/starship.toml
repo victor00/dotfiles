@@ -159,12 +159,12 @@ disabled = true
 
 [palettes.operator]
 rosewater = "#FFB000"
-flamingo = "#FF8C00"
-pink = "#FF8C00"
+flamingo = "#FF5F00"
+pink = "#FF5F00"
 mauve = "#C678DD"
 red = "#E06C75"
 maroon = "#BE5046"
-peach = "#FF8C00"
+peach = "#FF5F00"
 yellow = "#FFB000"
 green = "#98C379"
 teal = "#56B6C2"
