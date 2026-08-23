@@ -75,12 +75,18 @@ favoritos e exports ficam fora do repositório.
 
 ```bash
 db                       # seleciona conexão e abre o Rainfrog
+db project               # abre o PostgreSQL publicado pelo projeto atual
 db configure             # cria/edita configuração privada
 db doctor                # versões e caminhos, sem mostrar credenciais
 db reenter-password      # solicita novamente a senha da conexão escolhida
 db -- --help             # ajuda nativa do Rainfrog
 dev-help database
 ```
+
+Dentro de `automation-engine`, `automation-orchestrator` ou `rdstation`, use
+`db project`. O comando descobre a porta publicada pelo Docker Compose sem guardar
+senha. Ele não inicia containers: suba o stack local do projeto primeiro. Para o
+Orchestrator, Temporal usa `localhost:7233` e a UI usa `http://localhost:8080`.
 
 Fluxo inicial:
 

@@ -78,6 +78,8 @@ rainfrog --version
 - Símbolos quebrados: confirme JetBrainsMono Nerd Font no Ghostty.
 - Banco inacessível: confirme VPN, DNS, porta com `dev port PORT` e acesso usando uma
   conta read-only. O wrapper não inicia containers ou servidores automaticamente.
+- `db project` informa que o serviço não está rodando: inicie o stack local pelo
+  comando documentado no projeto (`make start`) e tente novamente.
 
 ## fzf
 

@@ -9,6 +9,7 @@ config_file="$config_dir/rainfrog_config.toml"
 usage() {
   cat <<EOF
 Usage: db
+       db project
        db configure
        db doctor
        db reenter-password
@@ -51,6 +52,47 @@ migrate_starter_config() {
   printf 'db: updated the local PostgreSQL starter profile (username=postgres)\n' >&2
 }
 
+project_connection() {
+  command -v git >/dev/null 2>&1 || die 'git is required to locate the project root'
+  command -v docker >/dev/null 2>&1 || die 'docker is required to discover the published PostgreSQL port'
+
+  local root project service database username endpoint port
+  root="$(git rev-parse --show-toplevel 2>/dev/null)" || die 'not inside a supported Git project'
+  project="${root##*/}"
+  local -a compose_args=(--project-directory "$root" -f "$root/docker-compose.yml")
+
+  case "$project" in
+    automation-engine)
+      compose_args+=(-f "$root/docker-compose.local.yml")
+      service='automation-db'
+      database='crm_automation_development'
+      username='postgres'
+      ;;
+    automation-orchestrator)
+      compose_args+=(-f "$root/docker-compose.local.yml")
+      service='postgresql'
+      database='temporal'
+      username='temporal'
+      printf 'db: Temporal gRPC: localhost:7233; UI: http://localhost:8080\n' >&2
+      ;;
+    rdstation)
+      service='db'
+      database='rdstation_development'
+      username='postgres'
+      ;;
+    *) die "unsupported project: $project (supported: automation-engine, automation-orchestrator, rdstation)" ;;
+  esac
+
+  endpoint="$(docker compose "${compose_args[@]}" port "$service" 5432 2>/dev/null)" ||
+    die "PostgreSQL service '$service' is not running; start the project's local stack first"
+  [[ -n "$endpoint" ]] || die "PostgreSQL service '$service' has no published port; start the project's local stack first"
+  port="${endpoint##*:}"
+  [[ "$port" =~ ^[0-9]+$ ]] || die "could not parse PostgreSQL endpoint: $endpoint"
+
+  printf 'db: %s -> %s@127.0.0.1:%s/%s\n' "$project" "$username" "$port" "$database" >&2
+  exec rainfrog --driver postgres --username "$username" --host 127.0.0.1 --port "$port" --database "$database"
+}
+
 configure() {
   ensure_private_dirs
   if [[ ! -e "$config_file" ]]; then
@@ -82,6 +124,12 @@ export RAINFROG_FAVORITES="${RAINFROG_FAVORITES:-$data_home/rainfrog/favorites}"
 
 case "${1:-}" in
   "") require_rainfrog; ensure_private_dirs; migrate_starter_config; exec rainfrog ;;
+  project)
+    [[ $# -eq 1 ]] || { usage >&2; exit 2; }
+    require_rainfrog
+    ensure_private_dirs
+    project_connection
+    ;;
   configure) [[ $# -eq 1 ]] || { usage >&2; exit 2; }; configure ;;
   doctor)
     [[ $# -eq 1 ]] || { usage >&2; exit 2; }

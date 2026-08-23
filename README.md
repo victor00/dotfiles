@@ -158,8 +158,13 @@ Rainfrog é o navegador principal e funciona fora de projetos Rails:
 scripts/link-config --apply    # disponibiliza o comando db
 db configure                   # configuração privada fora do Git
 db                             # seleciona conexão e abre o TUI
+db project                     # detecta banco/porta do projeto atual
 db doctor
 ```
+
+`db project` reconhece `automation-engine`, `automation-orchestrator` e `rdstation`.
+O PostgreSQL do projeto precisa estar em execução; no Orchestrator, Temporal continua
+disponível em `localhost:7233` e a UI em `http://localhost:8080`.
 
 PostgreSQL tem prioridade; MySQL e SQLite são suportados pelo mesmo binário, sem
 wrappers adicionais. Veja conexões, navegação, SQL, histórico, favoritos e cuidados
