@@ -1,9 +1,9 @@
 keybinds clear-defaults=true {
     locked {
-        bind "Ctrl g" { SwitchToMode "Normal"; }
+        bind "Ctrl y" { SwitchToMode "Normal"; }
     }
     normal {
-        bind "Ctrl g" { SwitchToMode "Locked"; }
+        bind "Ctrl y" { SwitchToMode "Locked"; }
         bind "Ctrl p" { SwitchToMode "Pane"; }
         bind "Ctrl t" { SwitchToMode "Tab"; }
         bind "Ctrl r" { SwitchToMode "Resize"; }

@@ -1,6 +1,6 @@
 name: Operator Hacker
-accent: "#D19A66"
-cursor: "#D19A66"
+accent: "#FF8C00"
+cursor: "#FF8C00"
 background: "#21252B"
 foreground: "#ABB2BF"
 details: darker
@@ -9,7 +9,7 @@ terminal_colors:
     black: "#21252B"
     red: "#E06C75"
     green: "#98C379"
-    yellow: "#D19A66"
+    yellow: "#FF8C00"
     blue: "#4B8FCC"
     magenta: "#C678DD"
     cyan: "#56B6C2"
@@ -18,7 +18,7 @@ terminal_colors:
     black: "#5C6370"
     red: "#E06C75"
     green: "#98C379"
-    yellow: "#E5C07B"
+    yellow: "#FFB000"
     blue: "#4B8FCC"
     magenta: "#C678DD"
     cyan: "#56B6C2"

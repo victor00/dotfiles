@@ -47,11 +47,11 @@ Finalidade: Ghostty ou Warp renderizam o terminal; Zsh fornece o shell modular, 
 - A JetBrainsMono Nerd Font fornece os ícones de arquivos; o prompt usa rótulos
   textuais para não depender de símbolos ambíguos.
 - Ghostty, Starship e o realce do Zsh compartilham uma paleta Operator baseada em
-  One Dark: azul `#61AFEF`, laranja `#D19A66`, vermelho `#E06C75`, verde
+  One Dark: azul `#61AFEF`, laranja forte `#FF8C00`, vermelho `#E06C75`, verde
   `#98C379` e roxo `#C678DD`. Slots magenta do terminal são remapeados para
   laranja/roxo, sem rosa.
 - No prompt Starship, o diretório usa o azul médio-escuro `#4B8FCC` e a branch Git
-  usa laranja `#D19A66`; o roxo fica reservado para contexto técnico secundário.
+  usa laranja forte `#FF8C00`; o roxo fica reservado para contexto técnico secundário.
 - Exemplos: `git:main`, `novos:1`, `modificados:1`, `preparados:1` e
   `ruby:v3.4.4`. `novos` significa arquivos ainda não rastreados pelo Git.
 - Usuário/host aparecem somente em SSH ou como root. Runtimes, Docker, Kubernetes,
@@ -290,7 +290,7 @@ Resize:   h/j/k/l aumenta | H/J/K/L diminui
 Tab:      h/l anterior/próxima | n nova | r renomeia | 1..5 seleciona
 Scroll:   j/k | d/u meia página | Ctrl-f/Ctrl-b página | e editar scrollback
 Session:  d detach | w session manager
-Lock:     Ctrl-g trava/destrava
+Lock:     Ctrl-y trava/destrava (Ctrl-g fica reservado para focar o Codex)
 Global:   Alt-h/j/k/l navega | Alt-f floating | Alt-? ajuda
 ```
 
@@ -568,6 +568,7 @@ Sidekick integra somente as CLIs Claude, Codex e Cursor dentro do Neovim/Zellij.
 <leader>ix Codex                <leader>iu Cursor agent
 <leader>if enviar arquivo       <leader>iv enviar seleção
 <leader>ip ações de prompt
+Ctrl-Shift-G focar Codex no Warp (o terminal envia Ctrl-G)
 ```
 
 Autentique cada CLI pelo fluxo oficial. Nunca coloque tokens nos dotfiles. Arquivo, seleção, diagnósticos ou diff só são enviados quando você aciona o comando; revise o contexto e não envie `.env`, credenciais, kubeconfigs, chaves, dados de clientes ou buffers sensíveis.

@@ -46,6 +46,14 @@ return {
         desc = "Toggle Codex",
       },
       {
+        "<C-g>",
+        function()
+          require("sidekick.cli").focus({ name = "codex" })
+        end,
+        mode = { "n", "t", "i", "x" },
+        desc = "Focus Codex",
+      },
+      {
         "<leader>iu",
         function()
           require("sidekick.cli").toggle({ name = "cursor", focus = true })

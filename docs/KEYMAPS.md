@@ -34,6 +34,7 @@ o executa automaticamente. No histórico `fzf`, `Ctrl-R` alterna a ordenação,
 ## Zellij
 
 Consulte `dev-help zellij`. Navegação global usa `Alt-h/j/k/l`; o Neovim usa `Ctrl-h/j/k/l`, evitando disputa.
+`Ctrl-y` trava/destrava o Zellij; `Ctrl-g` fica livre para o Sidekick focar o Codex.
 
 ## LazyVim
 
