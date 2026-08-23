@@ -37,9 +37,12 @@ Finalidade: Ghostty renderiza o terminal; Zsh fornece o shell modular, e Starshi
 - Ghostty abre `zellij attach --create work`; recuperação: `ghostty -e zsh -l`.
 - Ghostty: `Ctrl-Shift-T` nova aba, `Ctrl-Shift-W` fecha superfície,
   `Ctrl-PageDown/PageUp` navega e `Ctrl-Shift-,` recarrega a configuração.
-- A JetBrainsMono Nerd Font fornece os símbolos do prompt e dos aliases com ícones.
+- A JetBrainsMono Nerd Font fornece os ícones de arquivos; o prompt usa rótulos
+  textuais para não depender de símbolos ambíguos.
 - Starship usa Catppuccin Mocha: diretório azul, Git roxo, ação/duração em
   vermelho ou laranja e prompt azul em sucesso ou vermelho em erro.
+- Exemplos: `git:main`, `novos:1`, `modificados:1`, `preparados:1` e
+  `ruby:v3.4.4`. `novos` significa arquivos ainda não rastreados pelo Git.
 - Usuário/host aparecem somente em SSH ou como root. Runtimes, Docker, Kubernetes,
   Helm e Terraform são exibidos apenas quando o diretório tem contexto compatível.
 - Atualização: pelo grupo `make install-terminal`, após revisar o plano exibido.

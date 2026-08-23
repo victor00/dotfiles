@@ -106,8 +106,9 @@ atalhos disponíveis. No VS Code, abra o terminal integrado com `` Ctrl-` ``; el
 o Zsh e o Starship, mas não inicia outro Zellij dentro do editor. Se o perfil não for
 Zsh, use `Terminal: Select Default Profile`, escolha `zsh` e abra um terminal novo.
 
-O prompt exibe diretório, Git e relógio sempre; runtimes e ferramentas de
-infraestrutura aparecem somente em projetos detectados. Usuário/host aparecem
+O prompt usa rótulos legíveis: `git:main`, `novos:1`, `modificados:1` e
+`ruby:v3.4.4`, por exemplo. Diretório, Git e relógio aparecem sempre; runtimes e
+ferramentas de infraestrutura aparecem somente em projetos detectados. Usuário/host aparecem
 somente por SSH ou como root. Comandos acima de 1,5 s mostram a duração, e o símbolo
 final fica azul em sucesso ou vermelho em erro.
 

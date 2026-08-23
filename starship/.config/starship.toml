@@ -20,18 +20,21 @@ format = "[$path]($style)[$lock_symbol]($lock_style) "
 [git_state]
 format = '[\($state( $progress_current of $progress_total)\)]($style) '
 
-# Setting Icons for git status
+# Keep legacy installs readable without requiring icon knowledge.
+[git_branch]
+symbol = "git:"
+
 [git_status]
-conflicted = "⚔️ "
-ahead = "↑ ${count} "
-behind = "↓ ${count} "
-diverged = "🔱 🏎️ 💨 ×${ahead_count} 🐢 ×${behind_count}"
-untracked = "🛤️  ×${count}"
-stashed = "📦 "
-modified = "📝 ×${count}"
-staged = "🗃️  ×${count}"
-renamed = "📛 ×${count}"
-deleted = "🗑️  ×${count}"
+conflicted = "conflitos:${count} "
+ahead = "enviar:${count} "
+behind = "receber:${count} "
+diverged = "divergiu:enviar-${ahead_count}/receber-${behind_count} "
+untracked = "novos:${count} "
+stashed = "stashes:${count} "
+modified = "modificados:${count} "
+staged = "preparados:${count} "
+renamed = "renomeados:${count} "
+deleted = "removidos:${count} "
 style = "bright-white"
 format = "$all_status$ahead_behind"
 
@@ -39,11 +42,10 @@ format = "$all_status$ahead_behind"
 disabled = true
 
 [ruby]
-symbol = " "
+symbol = "ruby:"
 
 [java]
-symbol = " "
+symbol = "java:"
 
 [lua]
 symbol = " "
-

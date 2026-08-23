@@ -42,51 +42,51 @@ read_only = " 󰌾"
 style = "bold blue"
 
 [git_branch]
-symbol = " "
+symbol = "git:"
 format = "[$symbol$branch(:$remote_branch)]($style) "
 style = "bold mauve"
 
 [git_status]
 format = "([$all_status$ahead_behind]($style) )"
 style = "bold lavender"
-ahead = "⇡${count}"
-behind = "⇣${count}"
-diverged = "⇕⇡${ahead_count}⇣${behind_count}"
-modified = "!${count}"
-staged = "+${count}"
-untracked = "?${count}"
-deleted = "×${count}"
-renamed = "»${count}"
-conflicted = "=${count}"
-stashed = "*${count}"
+ahead = "enviar:${count} "
+behind = "receber:${count} "
+diverged = "divergiu:enviar-${ahead_count}/receber-${behind_count} "
+modified = "modificados:${count} "
+staged = "preparados:${count} "
+untracked = "novos:${count} "
+deleted = "removidos:${count} "
+renamed = "renomeados:${count} "
+conflicted = "conflitos:${count} "
+stashed = "stashes:${count} "
 
 [ruby]
-symbol = " "
+symbol = "ruby:"
 format = "[$symbol($version)]($style) "
 style = "bold red"
 
 [golang]
-symbol = " "
+symbol = "go:"
 format = "[$symbol($version)]($style) "
 style = "bold sapphire"
 
 [python]
-symbol = " "
+symbol = "python:"
 format = '[$symbol($version)( \($virtualenv\))]($style) '
 style = "bold yellow"
 
 [java]
-symbol = " "
+symbol = "java:"
 format = "[$symbol($version)]($style) "
 style = "bold peach"
 
 [nodejs]
-symbol = " "
+symbol = "node:"
 format = "[$symbol($version)]($style) "
 style = "bold green"
 
 [docker_context]
-symbol = " "
+symbol = "docker:"
 format = "[$symbol$context]($style) "
 style = "bold sapphire"
 detect_files = [
@@ -100,7 +100,7 @@ detect_folders = [".docker"]
 
 [kubernetes]
 disabled = false
-symbol = "󱃾 "
+symbol = "kube:"
 format = "[$symbol$context(::$namespace)]($style) "
 style = "bold mauve"
 detect_files = ["kustomization.yaml", "skaffold.yaml"]
@@ -112,12 +112,12 @@ command = "helm version --short | cut -d+ -f1"
 detect_files = ["Chart.yaml", "helmfile.yaml", "helmfile.yml"]
 detect_folders = ["charts", "helm"]
 shell = ["bash", "--noprofile", "--norc"]
-symbol = "󰠳 "
+symbol = "helm:"
 format = "[$symbol$output]($style) "
 style = "bold lavender"
 
 [terraform]
-symbol = " "
+symbol = "terraform:"
 format = "[$symbol$workspace]($style) "
 style = "bold mauve"
 
@@ -127,20 +127,20 @@ symbol = " "
 [cmd_duration]
 min_time = 1500
 show_milliseconds = false
-format = "[󱎫 $duration]($style) "
+format = "[tempo:$duration]($style) "
 style = "bold peach"
 
 [jobs]
-symbol = "󰜎 "
+symbol = "jobs:"
 number_threshold = 1
 format = "[$symbol$number]($style) "
 style = "bold yellow"
 
 [status]
 disabled = false
-map_symbol = true
+map_symbol = false
 pipestatus = true
-format = "[$symbol$status]($style) "
+format = "[erro:$status]($style) "
 style = "bold red"
 
 [time]
