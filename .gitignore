@@ -15,3 +15,10 @@ config/**/local.*
 nvim.log
 **/.zcompdump*
 config/nvim/.config/go/telemetry/
+
+# Machine-local tracked configuration
+/git/.gitconfig
+/nvim/lazy-lock.json
+/nvim/lazyvim.json
+/zsh/.extra_configs
+/zsh/.zshrc

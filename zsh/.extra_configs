@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# Precisa rodar antes do zoxide
-autoload -Uz compinit && compinit
-
-# Inicialização do zoxide
-eval "$(zoxide init zsh)"
-
-
