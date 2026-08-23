@@ -21,6 +21,10 @@ command -v ghostty || test -x /snap/bin/ghostty
 Depois da instalação Snap, saia e entre novamente na sessão gráfica se o launcher
 “Ghostty” ainda não aparecer no menu do GNOME.
 
+Se aparecer “Configuration Errors” com `theme not found`, confira os recursos da
+versão instalada com `ghostty +list-themes`. Os dotfiles usam `Atom One Dark`, que
+está incluído no Snap 1.3.1; recarregue com `Ctrl-Shift-,`.
+
 Se `gst`, `..`, `dev` ou `git pr` não forem encontrados após uma atualização:
 
 ```bash

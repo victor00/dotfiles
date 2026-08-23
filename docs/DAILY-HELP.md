@@ -28,6 +28,9 @@ Este é o manual operacional e a fonte de conteúdo do comando `dev-help`. Ferra
 
 Finalidade: Ghostty renderiza o terminal; Zsh fornece o shell modular, e Starship somente o prompt. Zellij cuida de sessões, abas e painéis.
 
+- O tema `Atom One Dark` é um recurso incluído no Ghostty Snap 1.3.1; nomes de temas
+  externos não são presumidos em instalações novas.
+
 - Configuração: `config/ghostty/`, `config/zsh/` e `config/starship/`.
 - Ghostty usa abas GTK para superfícies; Zellij continua responsável por sessões,
   layouts e panes dentro de cada superfície.

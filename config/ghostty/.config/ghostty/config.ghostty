@@ -7,7 +7,7 @@ shell-integration = zsh
 # THEME AND COLORS
 # ==============================================================================
 
-theme = One Dark Pro Mix
+theme = Atom One Dark
 background-opacity = 0.97
 
 # ==============================================================================
