@@ -118,7 +118,7 @@ Zsh, use `Terminal: Select Default Profile`, escolha `zsh` e abra um terminal no
 
 Abra o Warp pelo menu ou com `warp-terminal`. Em **Settings > Appearance**, clique
 em **Current Theme**, selecione `Operator Hacker` e confirme no botão de check; o
-arquivo versionado em `~/.warp/themes/` compartilha azul, laranja,
+arquivo versionado em `~/.local/share/warp-terminal/themes/` compartilha azul, laranja,
 vermelho, verde e roxo com Ghostty e Starship. Use JetBrainsMono Nerd Font, peso
 Bold, cursor em bloco e mantenha ligaturas desativadas se priorizar latência.
 No prompt, diretórios usam azul médio-escuro `#4B8FCC` e a branch Git usa laranja

@@ -32,7 +32,8 @@ Finalidade: Ghostty ou Warp renderizam o terminal; Zsh fornece o shell modular, 
   externos não são presumidos em instalações novas.
 
 - Configuração: `config/ghostty/`, `config/zsh/` e `config/starship/`.
-- Tema do Warp: `config/warp/`, vinculado em `~/.warp/themes/`; selecione
+- Tema do Warp: `config/warp/`, vinculado em
+  `~/.local/share/warp-terminal/themes/operator-hacker.yaml`; selecione
   `Operator Hacker` em Appearance > Current Theme e confirme no check. Panes
   nativos: `Ctrl-Shift-D/E`, foco com `Ctrl-Alt-Setas`, maximizar com
   `Ctrl-Shift-Enter` e fechar com `Ctrl-Shift-W`.
