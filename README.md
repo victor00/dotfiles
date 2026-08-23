@@ -14,6 +14,8 @@ relevante. No shell, `ls`, `ll` e `tree` usam `eza` quando ele está disponível
 ## Início rápido
 
 ```bash
+./setup.sh                     # assistente interativo em modo plano
+./setup.sh --apply             # escolhe e aplica somente os itens confirmados
 make doctor                    # diagnóstico sem alterações
 ./install.sh terminal          # plano de instalação
 ./install.sh --apply terminal  # aplica após confirmação
@@ -26,6 +28,19 @@ Instalação e links são operações separadas e usam dry-run por padrão. Oper
 pedem confirmação antes de `sudo`; destinos existentes nunca são sobrescritos sem a
 opção explícita de backup. Veja [instalação](docs/INSTALL.md) e
 [migração](docs/MIGRATION.md).
+
+### Assistente interativo
+
+`./setup.sh` apresenta cada grupo com uma explicação curta e pergunta se ele deve
+ser incluído ou pulado. Ao pressionar `Enter`, o item é pulado; `y` inclui e `q`
+cancela. O modo padrão apenas mostra os planos dos itens selecionados. Para permitir
+alterações, use `./setup.sh --apply`; antes de começar, o assistente exibe o resumo
+e pede uma confirmação final. Grupos que precisam de APT ainda pedem autorização
+separada antes de executar `sudo`.
+
+Os itens disponíveis cobrem ferramentas essenciais, terminal, linguagens,
+desenvolvimento, Docker, banco de dados, APIs, gRPC, Bruno, desktop e links das
+configurações. A etapa de links recusa conflitos e nunca substitui arquivos locais.
 
 ## Arquitetura
 
@@ -55,6 +70,7 @@ scripts/     diagnóstico, links e validação
 docs/        instalação, arquitetura, atalhos e ajuda diária
 Makefile     interface curta para tarefas recorrentes
 install.sh   entrada única dos grupos de instalação
+setup.sh     assistente interativo para selecionar, explicar e pular grupos
 ```
 
 ## Ajuda para uso diário

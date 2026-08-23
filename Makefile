@@ -1,9 +1,12 @@
 SHELL := /usr/bin/env bash
 
-.PHONY: help doctor link check install-core install-terminal install-languages install-development install-docker install-database install-api-tools install-bruno install-grpc-tools install-desktop
+.PHONY: help setup doctor link check install-core install-terminal install-languages install-development install-docker install-database install-api-tools install-bruno install-grpc-tools install-desktop
 
 help:
 	@./install.sh --help
+
+setup:
+	@./setup.sh
 
 doctor:
 	@./scripts/doctor
