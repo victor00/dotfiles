@@ -144,8 +144,10 @@ dev file application.rb   # localiza somente arquivos
 z orchestrator            # acessa por histórico ou busca pelo nome
 ```
 
-Quando a navegação com `z` funciona, `✓ /caminho` aparece em verde. A confirmação
-respeita `NO_COLOR` e continua legível sem suporte a cores.
+Antes de executar, comandos, aliases e funções reconhecidos pelo Zsh aparecem em
+verde; comandos inexistentes aparecem em vermelho e caminhos em azul. Assim, o `z`
+de `z orchestrator` fica verde enquanto o argumento permanece legível. Depois da
+navegação, `✓ /caminho` confirma em verde que o destino foi acessado.
 
 `git reset --hard`, force push e descarte no LazyGit podem perder trabalho. Revise alvo e diff antes.
 <!-- /dev-help -->

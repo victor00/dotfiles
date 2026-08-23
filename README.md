@@ -110,8 +110,10 @@ Na branch padrão, `git pr` abre a página principal do repositório em vez de p
 um PR para `main`/`master`.
 Para localizar nomes diretamente, use `dev find NOME`, `dev directory NOME` ou
 `dev file NOME`; as buscas incluem diretórios ocultos, mas ignoram conteúdos `.git`.
-Ao navegar com `z NOME`, uma confirmação verde mostra o diretório acessado; com
-`NO_COLOR` definido, a mesma mensagem é exibida sem sequências de cor.
+Enquanto você digita, comandos, funções e aliases válidos ficam verdes; comandos
+inexistentes ficam vermelhos e caminhos ficam azuis. O realce é feito pelo
+Zsh Syntax Highlighting carregado por último no `.zshrc`. Depois que `z NOME`
+navega, uma linha verde `✓ /caminho` confirma o destino acessado.
 
 No shell, `gst` mostra o status Git e `..` sobe um diretório. Consulte exemplos e
 cuidados em `dev-help git`.

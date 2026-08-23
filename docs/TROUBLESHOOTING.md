@@ -20,8 +20,17 @@ command -v dev git-pr
 
 `z NOME` consulta primeiro o histórico do zoxide. Sem correspondência, procura um
 projeto Git ou pasta por nome. Se houver várias pastas, escolha uma no fzf ou refine
-o nome. `dev find NOME` mostra todos os caminhos sem mudar de diretório. A linha
-verde `✓ /caminho` confirma que a navegação terminou com sucesso.
+o nome. `dev find NOME` mostra todos os caminhos sem mudar de diretório.
+
+Se comandos válidos não ficarem verdes enquanto são digitados, confirme a presença
+de `/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh` ou do plugin em
+`~/.oh-my-zsh/custom/plugins/`, depois execute `exec zsh`. O realce é carregado por
+último para reconhecer aliases e funções como `gst` e `z`.
+
+O realce durante a digitação e a confirmação posterior são independentes: o plugin
+colore o comando antes do Enter; a função `z` imprime `✓ /caminho` somente depois de
+uma navegação bem-sucedida. Ambos respeitam terminais sem suporte a cor, e a
+confirmação respeita `NO_COLOR`.
 
 Na branch padrão, `git pr` abre o repositório. Nas demais branches, a mensagem “no
 pull request found” indica que não existe PR associado; use `git pr --create` se a

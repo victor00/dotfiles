@@ -11,3 +11,26 @@ unset module module_file
 
 # Machine/work configuration belongs outside the repository.
 [[ -r "$DOTFILES_ZSH_DIR/local.zsh" ]] && source "$DOTFILES_ZSH_DIR/local.zsh"
+
+# Must be loaded last so it can highlight every alias and function defined above.
+if [[ -z "${NO_COLOR:-}" && "${TERM:-}" != dumb ]]; then
+  syntax_highlighting_sources=(
+    /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    "$HOME/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+  )
+  for syntax_highlighting_source in "${syntax_highlighting_sources[@]}"; do
+    if [[ -r "$syntax_highlighting_source" ]]; then
+      source "$syntax_highlighting_source"
+      ZSH_HIGHLIGHT_STYLES[command]='fg=#a6e3a1,bold'
+      ZSH_HIGHLIGHT_STYLES[alias]='fg=#a6e3a1,bold'
+      ZSH_HIGHLIGHT_STYLES[function]='fg=#a6e3a1,bold'
+      ZSH_HIGHLIGHT_STYLES[builtin]='fg=#a6e3a1,bold'
+      ZSH_HIGHLIGHT_STYLES[precommand]='fg=#a6e3a1,bold'
+      ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#f38ba8,bold'
+      ZSH_HIGHLIGHT_STYLES[path]='fg=#89b4fa,underline'
+      break
+    fi
+  done
+  unset syntax_highlighting_source syntax_highlighting_sources
+fi

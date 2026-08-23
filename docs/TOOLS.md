@@ -2,7 +2,7 @@
 
 | Área | Ferramentas | Instalação/ownership |
 |---|---|---|
-| Shell | Zsh, fzf, zoxide, Starship | sistema ou release fixada; prompt Catppuccin Mocha contextual |
+| Shell | Zsh, fzf, zoxide, Starship, Zsh Syntax Highlighting | sistema ou release fixada; prompt contextual e comandos válidos em verde |
 | Terminal | Ghostty, JetBrainsMono Nerd Font | pacote oficial para Ubuntu; renderização, símbolos e superfícies GTK |
 | Multiplexador | Zellij | release oficial fixada; sessões, abas, painéis e layouts |
 | Aplicativos TUI | LazyGit, eza | release oficial fixada |
