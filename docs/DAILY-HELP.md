@@ -39,8 +39,10 @@ Finalidade: Ghostty renderiza o terminal; Zsh fornece o shell modular, e Starshi
   `Ctrl-PageDown/PageUp` navega e `Ctrl-Shift-,` recarrega a configuração.
 - A JetBrainsMono Nerd Font fornece os ícones de arquivos; o prompt usa rótulos
   textuais para não depender de símbolos ambíguos.
-- Starship usa Catppuccin Mocha: diretório azul, Git roxo, ação/duração em
-  vermelho ou laranja e prompt azul em sucesso ou vermelho em erro.
+- Ghostty, Starship e o realce do Zsh compartilham uma paleta Operator baseada em
+  One Dark: azul `#61AFEF`, laranja `#D19A66`, vermelho `#E06C75`, verde
+  `#98C379` e roxo `#C678DD`. Slots magenta do terminal são remapeados para
+  laranja/roxo, sem rosa.
 - Exemplos: `git:main`, `novos:1`, `modificados:1`, `preparados:1` e
   `ruby:v3.4.4`. `novos` significa arquivos ainda não rastreados pelo Git.
 - Usuário/host aparecem somente em SSH ou como root. Runtimes, Docker, Kubernetes,

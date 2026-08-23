@@ -22,13 +22,13 @@ if [[ -z "${NO_COLOR:-}" && "${TERM:-}" != dumb ]]; then
   for syntax_highlighting_source in "${syntax_highlighting_sources[@]}"; do
     if [[ -r "$syntax_highlighting_source" ]]; then
       source "$syntax_highlighting_source"
-      ZSH_HIGHLIGHT_STYLES[command]='fg=#a6e3a1,bold'
-      ZSH_HIGHLIGHT_STYLES[alias]='fg=#a6e3a1,bold'
-      ZSH_HIGHLIGHT_STYLES[function]='fg=#a6e3a1,bold'
-      ZSH_HIGHLIGHT_STYLES[builtin]='fg=#a6e3a1,bold'
-      ZSH_HIGHLIGHT_STYLES[precommand]='fg=#a6e3a1,bold'
-      ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#f38ba8,bold'
-      ZSH_HIGHLIGHT_STYLES[path]='fg=#89b4fa,underline'
+      ZSH_HIGHLIGHT_STYLES[command]='fg=#98C379,bold'
+      ZSH_HIGHLIGHT_STYLES[alias]='fg=#98C379,bold'
+      ZSH_HIGHLIGHT_STYLES[function]='fg=#98C379,bold'
+      ZSH_HIGHLIGHT_STYLES[builtin]='fg=#98C379,bold'
+      ZSH_HIGHLIGHT_STYLES[precommand]='fg=#98C379,bold'
+      ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#E06C75,bold'
+      ZSH_HIGHLIGHT_STYLES[path]='fg=#61AFEF,underline'
       break
     fi
   done

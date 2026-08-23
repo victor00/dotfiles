@@ -6,7 +6,8 @@ prompt; LazyVim, VS Code e Cursor são os editores; LazyGit concentra o fluxo Gi
 
 O perfil do Ghostty usa o tema Atom One Dark, JetBrainsMono Nerd Font 13,
 transparência leve e abas GTK. Cada nova superfície anexa à sessão principal `work`
-do Zellij. O Starship usa Catppuccin Mocha e mostra contexto técnico apenas quando
+do Zellij. O Starship usa uma paleta Operator baseada em One Dark — azul, laranja,
+vermelho, verde e roxo, sem rosa — e mostra contexto técnico apenas quando
 relevante. No shell, `ls`, `ll` e `tree` usam `eza` quando ele está disponível.
 
 ## Início rápido
