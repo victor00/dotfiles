@@ -7,12 +7,9 @@ Ubuntu é a única plataforma suportada pelo bootstrap. Clone o repositório no 
 ## Fluxo seguro
 
 ```bash
-./setup.sh                 # seleção guiada, somente planos
-./setup.sh --apply         # seleção guiada com aplicação confirmada
+./install.sh               # seleção guiada, somente planos
+./install.sh --apply       # seleção guiada com aplicação confirmada
 make doctor
-./install.sh core
-./install.sh terminal
-scripts/link-config
 make check
 ```
 
@@ -22,10 +19,15 @@ O primeiro comando de cada grupo mostra ferramenta, finalidade, origem, versão 
 ./install.sh --apply core
 ```
 
-O assistente `setup.sh` explica cada grupo e aceita `y` para incluir, `Enter` ou
+Sem informar um grupo, `install.sh` abre o assistente `setup.sh`. Ele explica cada
+opção e aceita `y` para incluir, `Enter` ou
 `n` para pular e `q` para cancelar. Mesmo com `--apply`, ele mostra a seleção completa
 e pede confirmação antes de iniciar. Confirmações de `sudo` e a proteção contra
 conflitos de links continuam independentes.
+
+Para automação, atualização posterior ou execução de um único componente, informe
+o grupo explicitamente, por exemplo `./install.sh terminal` para o plano ou
+`./install.sh --apply terminal` para aplicar.
 
 APT exige confirmação interativa antes de `sudo`. Instaladores de binários externos permanecem bloqueados até uma versão e checksum serem registrados e revisados.
 

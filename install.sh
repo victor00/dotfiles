@@ -7,7 +7,11 @@ export DOTFILES_ROOT
 
 usage() {
   cat <<'EOF'
-Usage: ./install.sh [--apply] GROUP
+Usage: ./install.sh [--apply] [GROUP]
+
+Without a group, starts the interactive installer so the user can choose every
+component. The default is a plan only; pass --apply to allow selected components
+to make changes after a final confirmation.
 
 Groups:
   core          Essential shell and file tools
@@ -22,7 +26,8 @@ Groups:
   desktop       Optional terminal and fonts
   obsidian      Obsidian desktop and pinned community plugins
 
-The default is a plan only. Pass --apply to allow an installer to make changes.
+Passing a group runs only that component, which is useful for automation or a
+later update. The default is still a plan only.
 No group runs sudo without an additional interactive confirmation.
 EOF
 }
@@ -35,7 +40,13 @@ fi
 
 group="${1:-}"
 case "$group" in
-  -h|--help|"") usage; exit 0 ;;
+  -h|--help) usage; exit 0 ;;
+  "")
+    if [[ "$apply" == true ]]; then
+      exec "$DOTFILES_ROOT/setup.sh" --apply
+    fi
+    exec "$DOTFILES_ROOT/setup.sh"
+    ;;
   core|terminal|languages|development|docker|database|api-tools|bruno|grpc-tools|desktop|obsidian) ;;
   *) printf 'Unknown group: %s\n' "$group" >&2; usage >&2; exit 2 ;;
 esac

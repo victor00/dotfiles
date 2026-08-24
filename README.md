@@ -14,8 +14,8 @@ relevante. No shell, `ls`, `ll` e `tree` usam `eza` quando ele está disponível
 ## Início rápido
 
 ```bash
-./setup.sh                     # assistente interativo em modo plano
-./setup.sh --apply             # escolhe e aplica somente os itens confirmados
+./install.sh                   # escolhe o que instalar, em modo plano
+./install.sh --apply           # escolhe e aplica somente os itens confirmados
 make doctor                    # diagnóstico sem alterações
 ./install.sh terminal          # plano de instalação
 ./install.sh --apply terminal  # aplica após confirmação
@@ -31,10 +31,11 @@ opção explícita de backup. Veja [instalação](docs/INSTALL.md) e
 
 ### Assistente interativo
 
-`./setup.sh` apresenta cada grupo com uma explicação curta e pergunta se ele deve
-ser incluído ou pulado. Ao pressionar `Enter`, o item é pulado; `y` inclui e `q`
+`./install.sh` sem um grupo abre o assistente (`setup.sh`), apresenta cada opção com
+uma explicação curta e pergunta se ela deve
+ser incluída ou pulada. Ao pressionar `Enter`, o item é pulado; `y` inclui e `q`
 cancela. O modo padrão apenas mostra os planos dos itens selecionados. Para permitir
-alterações, use `./setup.sh --apply`; antes de começar, o assistente exibe o resumo
+alterações, use `./install.sh --apply`; antes de começar, o assistente exibe o resumo
 e pede uma confirmação final. Grupos que precisam de APT ainda pedem autorização
 separada antes de executar `sudo`.
 
@@ -249,29 +250,21 @@ presumir um caminho fixo para o clone.
    cd ~/src/dotfiles
    ```
 
-2. Faça o diagnóstico e revise todos os planos, ainda sem alterações:
+2. Faça o diagnóstico e escolha os componentes. O primeiro comando apenas mostra
+   os planos, sem alterar a máquina:
 
    ```bash
    make doctor
-   ./install.sh core
-   ./install.sh terminal
-   ./install.sh languages
-   ./install.sh development
-   ./install.sh database
-   ./install.sh desktop
-   scripts/link-config
+   ./install.sh
    ```
 
-3. Aplique somente os grupos desejados. Cada operação APT pede confirmação antes de
-   usar sudo; grupos Cargo/binários escrevem no diretório do usuário:
+3. Execute novamente em modo de aplicação e selecione somente o que deseja
+   instalar. O assistente resume a escolha antes de iniciar. Cada operação APT pede
+   confirmação antes de usar sudo; grupos Cargo/binários escrevem no diretório do
+   usuário:
 
    ```bash
-   ./install.sh --apply core
-   ./install.sh --apply terminal
-   ./install.sh --apply languages
-   ./install.sh --apply development
-   ./install.sh --apply database
-   ./install.sh --apply desktop
+   ./install.sh --apply
    ```
 
 4. Revise conflitos antes dos links. Para uma máquina limpa, crie apenas destinos
