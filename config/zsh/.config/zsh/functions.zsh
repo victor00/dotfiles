@@ -20,9 +20,6 @@ kuse() {
   (( $+commands[kubectl] && $+commands[fzf] )) || { print 'kubectl and fzf are required.'; return 1; }
   local context
   context=$(kubectl config get-contexts -o name | fzf --prompt='Kubernetes context > ') || return
-  print -r -- "Will change kubectl context to: $context"
-  read -q 'REPLY?Continue? [y/N] ' || { print; return 1; }
-  print
   kubectl config use-context "$context"
 }
 

@@ -206,8 +206,9 @@ klf POD                  # follow pod logs
 k9                       # open k9s
 ```
 
-`kuse` and `knuse` require `kubectl` and `fzf` and ask for confirmation before
-changing local state. `knuse` queries namespaces from the cluster.
+`kuse` and `knuse` require `kubectl` and `fzf`. `kuse` switches context as soon as
+one is selected; `knuse` asks for confirmation and queries namespaces from the
+cluster.
 
 ### Git
 
@@ -588,8 +589,8 @@ kubectl port-forward svc/SERVICE 8080:80 -n NAMESPACE
 helm list -A
 ```
 
-`dev kube use CONTEXTO`, `kuse` e `knuse` pedem confirmação porque alteram contexto
-local. `apply`, `delete`, `scale`, `rollout`, `patch`, `edit`,
+`dev kube use CONTEXTO` e `knuse` pedem confirmação porque alteram contexto local;
+`kuse` troca imediatamente após a seleção. `apply`, `delete`, `scale`, `rollout`, `patch`, `edit`,
 `helm install/upgrade/uninstall` **ALTERAM CLUSTER** e nunca são executados pelos
 dotfiles.
 

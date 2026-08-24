@@ -10,7 +10,7 @@ alias help-api='dev-help api'
 # Give concise descriptions for dotfiles shortcuts while preserving the builtin
 # behavior for regular commands, multiple arguments, and options such as -a.
 typeset -gA DEV_COMMAND_DESCRIPTIONS=(
-  kuse 'select a Kubernetes context with fzf and confirmation'
+  kuse 'select and switch Kubernetes context with fzf'
   knuse 'select a Kubernetes namespace with fzf and confirmation'
   kwhere 'show the current Kubernetes context and namespace'
   k 'run kubectl'
