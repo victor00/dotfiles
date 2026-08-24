@@ -59,6 +59,7 @@ choose api-tools 'API command-line tools' 'Installs HTTPie, jq and yq for HTTP, 
 choose grpc-tools 'gRPC tools' 'Installs grpcurl and describes the optional WebSocket client.'
 choose bruno 'Bruno Desktop' 'Shows or applies the optional Bruno API client installation workflow.'
 choose desktop 'Desktop terminal and font' 'Installs Ghostty and JetBrainsMono Nerd Font using the supported desktop bootstrap.'
+choose obsidian 'Obsidian knowledge base' 'Installs the pinned Obsidian desktop package and checksum-verified community plugins in the active vault.'
 choose links 'Dotfiles links' 'Links versioned configuration into the home directory; conflicts are reported and never overwritten.'
 
 if ((${#selected[@]} == 0)); then

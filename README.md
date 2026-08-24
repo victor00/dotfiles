@@ -39,7 +39,7 @@ e pede uma confirmação final. Grupos que precisam de APT ainda pedem autoriza�
 separada antes de executar `sudo`.
 
 Os itens disponíveis cobrem ferramentas essenciais, terminal, linguagens,
-desenvolvimento, Docker, banco de dados, APIs, gRPC, Bruno, desktop e links das
+desenvolvimento, Docker, banco de dados, APIs, gRPC, Bruno, desktop, Obsidian e links das
 configurações. A etapa de links recusa conflitos e nunca substitui arquivos locais.
 
 ## Arquitetura
@@ -72,6 +72,20 @@ Makefile     interface curta para tarefas recorrentes
 install.sh   entrada única dos grupos de instalação
 setup.sh     assistente interativo para selecionar, explicar e pular grupos
 ```
+
+### Obsidian e plugins
+
+O grupo `obsidian` instala a versão fixada do aplicativo oficial e os plugins
+registrados em `config/obsidian/plugins.lock`. Pacote, manifests, JavaScript e CSS
+são verificados por SHA-256. O instalador usa o vault aberto no registro do Obsidian;
+para selecionar outro sem versionar caminhos pessoais:
+
+```bash
+./install.sh obsidian
+OBSIDIAN_VAULT=/caminho/absoluto/do/vault ./install.sh --apply obsidian
+```
+
+O vault e os dados/configurações pessoais dos plugins não entram no repositório.
 
 ## Ajuda para uso diário
 

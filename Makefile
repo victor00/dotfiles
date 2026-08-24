@@ -1,6 +1,6 @@
 SHELL := /usr/bin/env bash
 
-.PHONY: help setup doctor link check install-core install-terminal install-languages install-development install-docker install-database install-api-tools install-bruno install-grpc-tools install-desktop
+.PHONY: help setup doctor link check install-core install-terminal install-languages install-development install-docker install-database install-api-tools install-bruno install-grpc-tools install-desktop install-obsidian
 
 help:
 	@./install.sh --help
@@ -46,3 +46,6 @@ install-grpc-tools:
 
 install-desktop:
 	@./install.sh desktop
+
+install-obsidian:
+	@./install.sh obsidian

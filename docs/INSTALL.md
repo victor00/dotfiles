@@ -43,6 +43,19 @@ Abra “Ghostty” pelo menu do GNOME, execute `ghostty` ou, antes de a sessão 
 o PATH, `/snap/bin/ghostty`. Se o launcher não aparecer, encerre e abra a sessão
 gráfica novamente.
 
+### Obsidian e plugins
+
+```bash
+./install.sh obsidian          # mostra versão, plugins e vault selecionado
+./install.sh --apply obsidian  # instala pacote e plugins após confirmação
+```
+
+O pacote Debian oficial e todos os arquivos executáveis dos plugins têm versão e
+SHA-256 fixados em `bootstrap/obsidian.sh` e `config/obsidian/plugins.lock`. Por
+padrão, os plugins são instalados no vault marcado como aberto no registro local.
+Defina `OBSIDIAN_VAULT=/caminho/absoluto` para escolher explicitamente outro vault.
+O instalador não copia notas nem configurações privadas para o repositório.
+
 ## Links
 
 ```bash

@@ -20,6 +20,7 @@ Groups:
   bruno         Optional Bruno Desktop information/installer
   grpc-tools    grpcurl and optional WebSocket CLI
   desktop       Optional terminal and fonts
+  obsidian      Obsidian desktop and pinned community plugins
 
 The default is a plan only. Pass --apply to allow an installer to make changes.
 No group runs sudo without an additional interactive confirmation.
@@ -35,7 +36,7 @@ fi
 group="${1:-}"
 case "$group" in
   -h|--help|"") usage; exit 0 ;;
-  core|terminal|languages|development|docker|database|api-tools|bruno|grpc-tools|desktop) ;;
+  core|terminal|languages|development|docker|database|api-tools|bruno|grpc-tools|desktop|obsidian) ;;
   *) printf 'Unknown group: %s\n' "$group" >&2; usage >&2; exit 2 ;;
 esac
 
