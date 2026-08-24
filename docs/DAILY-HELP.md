@@ -301,6 +301,7 @@ Os instaladores mostram finalidade, origem, versão e atualização antes de agi
 ```bash
 gs                        # status compacto
 gst                       # status compacto (forma fácil de lembrar)
+gco nome-da-branch        # entra em uma branch
 gd                        # diff não staged
 gds                       # diff staged
 lg                        # abre LazyGit
