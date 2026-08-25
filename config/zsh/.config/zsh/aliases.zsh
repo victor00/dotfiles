@@ -25,6 +25,7 @@ alias d='docker'
 alias dc='docker compose'
 alias dps='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"'
 alias dlogs='docker compose logs --follow --tail=200'
+alias lzd='lazydocker'
 
 alias k='kubectl'
 alias kctx='kubectl config current-context'
