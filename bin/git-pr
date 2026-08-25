@@ -6,7 +6,8 @@ usage() {
 Usage: git pr [OPTION]
 
 Open or inspect the pull request associated with the current branch. On the
-repository's default branch, --view opens the repository page instead.
+repository's default branch, --view opens the repository page instead. When
+the current branch has no pull request, --view opens its comparison page.
 
 Options:
   --view       Open the pull request in the browser (default)
@@ -64,6 +65,12 @@ if [[ "$mode" == --view && -n "$default_branch" && "$branch" == "$default_branch
 fi
 
 if ! gh pr view "$branch" --json number >/dev/null 2>&1; then
+  if [[ "$mode" == --view ]]; then
+    repo="$(gh repo view --json nameWithOwner --jq '.nameWithOwner')"
+    printf 'git pr: no pull request found for %s; opening the comparison page in %s\n' "$branch" "$repo"
+    exec gh pr create --web --repo "$repo" --head "$branch"
+  fi
+
   die "no pull request found for branch: $branch (create one with: git pr --create)"
 fi
 
