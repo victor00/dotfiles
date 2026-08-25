@@ -5,6 +5,14 @@
 	pager = less -FRX
 [color]
 	ui = auto
+[color "status"]
+	header = bold cyan
+	branch = bold cyan
+	updated = bold green
+	added = bold green
+	changed = bold yellow
+	untracked = bold red
+	nobranch = bold red
 [pull]
 	rebase = true
 [push]

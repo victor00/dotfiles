@@ -4,7 +4,7 @@ alias ..='cd ..'
 
 alias g='git'
 alias gs='git status --short --branch'
-alias gst='git status --short --branch'
+alias gst='git status'
 alias ga='git add'
 alias gaa='git add --all'
 alias gc='git commit'

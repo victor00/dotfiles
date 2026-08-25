@@ -215,6 +215,7 @@ cluster.
 ```bash
 g                        # git
 gs                       # show compact status with branch
+gst                      # show full status with semantic colors
 ga FILE                  # stage a file
 gaa                      # stage all changes
 gc                       # create a commit
@@ -301,7 +302,7 @@ Os instaladores mostram finalidade, origem, versão e atualização antes de agi
 
 ```bash
 gs                        # status compacto
-gst                       # status compacto (forma fácil de lembrar)
+gst                       # status completo com cores semânticas
 gco nome-da-branch        # entra em uma branch
 gd                        # diff não staged
 gds                       # diff staged

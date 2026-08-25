@@ -13,7 +13,7 @@ Os 30 comandos de maior uso diário. Para o manual completo, execute
 | 6 | `z NOME` | Entra em diretório por histórico/nome | `zoxide --help` |
 | 7 | `dev project NOME` | Localiza um repositório | `dev --help` |
 | 8 | `dev find NOME` | Localiza arquivo ou pasta | `dev --help` |
-| 9 | `gst` | Mostra status Git compacto | `dev-help git` |
+| 9 | `gst` | Mostra status Git completo e colorido | `dev-help git` |
 | 10 | `git pr` | Abre PR ou página do repositório | `git pr -h` |
 | 11 | `git root` | Imprime a raiz do repositório | `git root -h` |
 | 12 | `git recent 10` | Lista branches recentes | `git recent -h` |
