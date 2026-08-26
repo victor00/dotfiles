@@ -3,11 +3,21 @@
 export ZDOTDIR="${ZDOTDIR:-$HOME}"
 export DOTFILES_ZSH_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 
+# Treat a relative directory entered by itself as `cd <directory>`.
+setopt AUTO_CD
+
 for module in environment history completion aliases functions integrations fzf help; do
   module_file="$DOTFILES_ZSH_DIR/$module.zsh"
   [[ -r "$module_file" ]] && source "$module_file"
 done
 unset module module_file
+
+# Make a bare `~` behave like `cd ~` before Zsh expands it to an absolute path.
+_home_on_accept_line() {
+  [[ $BUFFER == "~" ]] && BUFFER="cd ~"
+  zle .accept-line
+}
+zle -N accept-line _home_on_accept_line
 
 # Machine/work configuration belongs outside the repository.
 [[ -r "$DOTFILES_ZSH_DIR/local.zsh" ]] && source "$DOTFILES_ZSH_DIR/local.zsh"
