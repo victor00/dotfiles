@@ -12,12 +12,12 @@ for module in environment history completion aliases functions integrations fzf 
 done
 unset module module_file
 
-# Make a bare `~` enter the filesystem root without changing normal `~/path` expansion.
-_root_on_accept_line() {
-  [[ $BUFFER == "~" ]] && BUFFER="cd /"
+# Make a bare `~` enter the home directory.
+_home_on_accept_line() {
+  [[ $BUFFER == "~" ]] && BUFFER="cd ~"
   zle .accept-line
 }
-zle -N accept-line _root_on_accept_line
+zle -N accept-line _home_on_accept_line
 
 # Machine/work configuration belongs outside the repository.
 [[ -r "$DOTFILES_ZSH_DIR/local.zsh" ]] && source "$DOTFILES_ZSH_DIR/local.zsh"
